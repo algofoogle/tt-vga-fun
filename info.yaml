@@ -1,17 +1,20 @@
 # Tiny Tapeout project information
 project:
-  title:        "TT06 Grab Bag"      # Project title
-  author:       "algofoogle (Anton Maurovic)"      # Your name
-  discord:      "algofoogle"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "A few analog/mixed-signal experiments with a 24-bit VGA pattern generator as the highlight"      # One line description of what your project does
+  title:        "TT07 VGA FUN!"
+  author:       "algofoogle (Anton Maurovic)"
+  discord:      "algofoogle"
+  description:  "Analog/mixed-signal experiments with 24-bit VGA pattern generators as the highlight"
   language:     "Analog" # other examples include Verilog, Amaranth, VHDL, etc
   clock_hz:     25_000_000       # Clock frequency in Hz (or 0 if not applicable)
 
   # How many tiles your design occupies? A single tile is about 167x108 uM.
   tiles: "1x2"          # Valid values: 1x1 (digital only), 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
 
+  # How many analog pins does your project use?
+  analog_pins: 3        # Valid values: 0 to 6
+
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
-  top_module:  "tt_um_algofoogle_tt06_grab_bag"
+  top_module:  "tt_um_algofoogle_tt_vga_fun"
   
   # List your project's source files here. Source files must be in ./src and you must list each source file separately, one per line:
   source_files:        
@@ -50,14 +53,13 @@ pinout:
   uio[6]: "dac4_in[7]"
   uio[7]: "inv_in"
 
-  # Analog pins - you can add more if you use them, up to 6.
-  # Keep only the "ua" pins you are actually using, and *delete* any unused "ua" pins.
-  # The first pins is always ua[0], and the pin numbers must be sequential.
+  # Analog pins - make sure to also set "analog_pins" above, else the pins won't be connected
   ua[0]: "r_out"
   ua[1]: "g_out"
   ua[2]: "b_out"
-  ua[3]: "inv_aout"
-  ua[4]: "dac4_aout"
+  ua[3]: ""
+  ua[4]: ""
+  ua[5]: ""
 
 # Do not change!
 yaml_version: 6
