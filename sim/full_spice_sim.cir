@@ -1,36 +1,129 @@
-.lib /home/matt/work/asic-workshop/shuttle-2404/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+*.lib /home/matt/work/asic-workshop/shuttle-2404/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib /home/anton/.volare/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
-.include "../mag/tt_um_mattvenn_r2r_dac.sim.spice"
+*NOTE: In order to use this, you must first extract tt_um_algofoogle_tt06_grab_bag.sim.spice
+* by being in the mag/ directory and running: make tt_um_algofoogle_tt06_grab_bag.sim.spice
+
+.include "../mag/tt_um_algofoogle_tt06_grab_bag.sim.spice"
 
 .param mc_mm_switch=1
 .param mc_pr_switch=1
 
-xtt clk ena rst_n ua[0] ua[1] ua[2] ua[3] ua[4] ua[5] ua[6]
-+ ua[7] ui_in[0] ui_in[1] ui_in[2] ui_in[3] ui_in[4] ui_in[5] ui_in[6] ui_in[7] uio_in[0]
-+ uio_in[1] uio_in[2] uio_in[3] uio_in[4] uio_in[5] uio_in[6] uio_in[7] uio_oe[0]
-+ uio_oe[1] uio_oe[2] uio_oe[3] uio_oe[4] uio_oe[5] uio_oe[6] uio_oe[7] uio_out[0]
-+ uio_out[1] uio_out[2] uio_out[3] uio_out[4] uio_out[5] uio_out[6] uio_out[7] uo_out[0]
-+ uo_out[1] uo_out[2] uo_out[3] uo_out[4] uo_out[5] uo_out[6] uo_out[7] vcc 0 tt_um_mattvenn_r2r_dac
+*NOTE: Weird port ordering matches how it was extracted by Magic:
+xtt
++ clk
++ ena
++ rst_n
++ ua[3]
++ ua[4]
++ ua[5]
++ ua[6]
++ ua[7]
++ ui_in[1]
++ ui_in[6]
++ uio_in[0]
++ uio_in[1]
++ uio_in[2]
++ uio_in[3]
++ uio_in[4]
++ uio_in[5]
++ uio_in[6]
++ uio_in[7]
++ uio_oe[0]
++ uio_oe[1]
++ uio_oe[2]
++ uio_oe[3]
++ uio_oe[4]
++ uio_oe[5]
++ uio_oe[6]
++ uio_oe[7]
++ uio_out[2]
++ uio_out[3]
++ uio_out[4]
++ uio_out[5]
++ uio_out[6]
++ uio_out[7]
++ uo_out[1]
++ uo_out[6]
++ ui_in[3]
++ ua[1]
++ ui_in[5]
++ uo_out[0]
++ ui_in[7]
++ uio_out[1]
++ ua[0]
++ uo_out[4]
++ uo_out[7]
++ ui_in[0]
++ uo_out[2]
++ uio_out[0]
++ ui_in[2]
++ uo_out[3]
++ uo_out[5]
++ ui_in[4]
++ ua[2]
++ 0
++ vcc
++ tt_um_algofoogle_tt06_grab_bag_parax
+
+*SMELL: Better to do 2.5p either side of R, instead of 5p on out side.
+Rr1 ua[0]           routpin 500
+Cr2 routpin         GND 5p
+Rg1 ua[1]           goutpin 500
+Cg2 goutpin         GND 5p
+Rb1 ua[2]           boutpin 500
+Cb2 boutpin         GND 5p
+
 
 **** End of the ADC and its subcircuits.  Begin test circuit ****
 
-.param vcc=3.3
+.param vcc=1.8
 vcc vcc 0 {vcc}
 
-* set ext data to be off, signal is generated inside
-Vext_data uio_in[0] 0 0
+* --- Mode 3: XOR pattern:
+Vin0 ui_in[0] GND dc 0.0
+Vin1 ui_in[1] GND dc 0.0
+Vin2 ui_in[2] GND dc 0.0
+Vin3 ui_in[3] GND dc 0.0
+Vin4 ui_in[4] GND dc {vcc}
+Vin5 ui_in[5] GND dc {vcc}
+Vin6 ui_in[6] GND dc 0.0
+Vin7 ui_in[7] GND dc 0.0
 
 * Digital clock signal
-
 aclock 0 clk clock
-.model clock d_osc cntl_array=[-1 1] freq_array=[1Meg 1Meg]
+.model clock d_osc cntl_array=[-1 1] freq_array=[25Meg 25Meg]
 
 * reset signal
-
-Vreset rst_n 0 PULSE 3 0 1n 20p 20p 1u 500u
+Vreset rst_n GND PULSE 1.8 0 40n 1n 1n 120n 34m ;256u
 
 .control
-tran 100n 400u
-plot ua[0]
+    tran 8n 16.8m 0 8n UIC
+    *plot ua[0]
+    *NOTE: We write out:
+    * ua[0]      = R internal
+    * ua[1]      = G internal
+    * ua[2]      = B internal
+    * routpin    = R external
+    * goutpin    = G external
+    * boutpin    = B external
+    * uo[7]      = hsync
+    * uo[3]      = vsync
+    * uio_out[1] = hblank
+    * uio_out[0] = vblank
+    write mixed.raw
+    + v(ua[0])
+    + v(ua[1])
+    + v(ua[2])
+    + v(routpin)
+    + v(goutpin)
+    + v(boutpin)
+    + v(uo[7])
+    + v(uo[3])
+    + v(uio_out[1])
+    + v(uio_out[0])
+  quit
 .endc
 .end
+
+
