@@ -1,8 +1,16 @@
-cleansim: clean mixed render
+SRC_RAW ?= fss_select.raw
+OUT_PPM ?= ~/HOST_Documents/fss.ppm
+
+cleanmixed: clean mixed render
+
+cleanfull: clean full render
 
 render:
-	python3 ../xschem/render.py
-	ls -alh ~/HOST_Documents/mixed.ppm
+	python3 ../xschem/render.py $(SRC_RAW) $(OUT_PPM)
+	ls -alh $(OUT_PPM)
+
+full: full_spice_sim.cir
+	ngspice $<
 
 mixed: mixed.cir spicewrap.so
 	ngspice $<

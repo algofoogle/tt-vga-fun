@@ -1,12 +1,15 @@
 import ltspice
 import os
 import numpy as np
-
+import sys
 
 # SRC = 'simulation/tb_r2rV2.raw'
 # OUT = 'unbuffered_parax.ppm'
-SRC = 'mixed.raw' # Source ngspice raw output file.
-OUT = '~/HOST_Documents/mixed_raw.ppm' # Output image file to create.
+
+# Source ngspice raw output file:
+SRC = 'mixed.raw' if len(sys.argv)<2 else sys.argv[1]
+# Output image file to create:
+OUT = '~/HOST_Documents/mixed_raw.ppm' if len(sys.argv)<3 else sys.argv[2]
 
 HS = 'V(hsync)'
 
@@ -28,13 +31,13 @@ VB = 'V(boutpin)'
 # VB = 'V(bdacxhzpin)'
 
 # ===== Output range scaling =====
-# Typical amplified outputs:
-scale_min = 0.30
-scale_max = 1.30
+# # Typical amplified outputs:
+# scale_min = 0.30
+# scale_max = 1.30
 
-# # Typical raw DAC unbuffered range:
-# scale_min = 0.00
-# scale_max = 1.80
+# Typical raw DAC unbuffered range:
+scale_min = 0.00
+scale_max = 1.80
 
 
 # piecewise_linear_interpolation

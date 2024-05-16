@@ -1,3 +1,5 @@
+Full circuit sim of extracted digital and analog blocks
+
 *.lib /home/matt/work/asic-workshop/shuttle-2404/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .lib /home/anton/.volare/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
@@ -6,72 +8,74 @@
 
 .include "../mag/tt_um_algofoogle_tt06_grab_bag.sim.spice"
 
-.param mc_mm_switch=1
-.param mc_pr_switch=1
+* Disable mismatch:
+.param mc_mm_switch=0
+* Disable Monte Carlo:
+.param mc_pr_switch=0
 
 *NOTE: Weird port ordering matches how it was extracted by Magic:
 xtt
 + clk
 + ena
 + rst_n
-+ ua[3]
-+ ua[4]
-+ ua[5]
-+ ua[6]
-+ ua[7]
-+ ui_in[1]
-+ ui_in[6]
-+ uio_in[0]
-+ uio_in[1]
-+ uio_in[2]
-+ uio_in[3]
-+ uio_in[4]
-+ uio_in[5]
-+ uio_in[6]
-+ uio_in[7]
-+ uio_oe[0]
-+ uio_oe[1]
-+ uio_oe[2]
-+ uio_oe[3]
-+ uio_oe[4]
-+ uio_oe[5]
-+ uio_oe[6]
-+ uio_oe[7]
-+ uio_out[2]
-+ uio_out[3]
-+ uio_out[4]
-+ uio_out[5]
-+ uio_out[6]
-+ uio_out[7]
-+ uo_out[1]
-+ uo_out[6]
-+ ui_in[3]
-+ ua[1]
-+ ui_in[5]
-+ uo_out[0]
-+ ui_in[7]
-+ uio_out[1]
-+ ua[0]
-+ uo_out[4]
-+ uo_out[7]
-+ ui_in[0]
-+ uo_out[2]
-+ uio_out[0]
-+ ui_in[2]
-+ uo_out[3]
-+ uo_out[5]
-+ ui_in[4]
-+ ua[2]
++ ua3
++ ua4
++ ua5
++ ua6
++ ua7
++ ui_in1
++ ui_in6
++ uio_in0
++ uio_in1
++ uio_in2
++ uio_in3
++ uio_in4
++ uio_in5
++ uio_in6
++ uio_in7
++ uio_oe0
++ uio_oe1
++ uio_oe2
++ uio_oe3
++ uio_oe4
++ uio_oe5
++ uio_oe6
++ uio_oe7
++ uio_out2
++ uio_out3
++ uio_out4
++ uio_out5
++ uio_out6
++ uio_out7
++ uo_out1
++ uo_out6
++ ui_in3
++ ua1
++ ui_in5
++ uo_out0
++ ui_in7
++ uio_out1
++ ua0
++ uo_out4
++ uo_out7
++ ui_in0
++ uo_out2
++ uio_out0
++ ui_in2
++ uo_out3
++ uo_out5
++ ui_in4
++ ua2
 + 0
 + vcc
 + tt_um_algofoogle_tt06_grab_bag_parax
 
 *SMELL: Better to do 2.5p either side of R, instead of 5p on out side.
-Rr1 ua[0]           routpin 500
+Rr1 ua0             routpin 500
 Cr2 routpin         GND 5p
-Rg1 ua[1]           goutpin 500
+Rg1 ua1             goutpin 500
 Cg2 goutpin         GND 5p
-Rb1 ua[2]           boutpin 500
+Rb1 ua2             boutpin 500
 Cb2 boutpin         GND 5p
 
 
@@ -80,49 +84,90 @@ Cb2 boutpin         GND 5p
 .param vcc=1.8
 vcc vcc 0 {vcc}
 
+.param rise=     1n
+.param fall=     1n
+* Duty cycle (high time) of each digital input:
+.param h0=   40n-1n
+.param h1=   80n-1n
+.param h2=  160n-1n
+.param h3=  320n-1n
+.param h4=  640n-1n
+.param h5= 1280n-1n
+.param h6= 2560n-1n
+.param h7= 5120n-1n
+* Period of each digital input:
+.param p0=   80n
+.param p1=  160n
+.param p2=  320n
+.param p3=  640n
+.param p4= 1280n
+.param p5= 2560n
+.param p6= 5120n
+.param p7=10240n
+
+* * --- Mode 0: PASS: ui_in passes thru directly to all 3 DACs ---
+* Vin0 ui_in0 GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h7} {p7} ;NOTE: h0/p0 used on MSB!
+* Vin1 ui_in1 GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h1} {p1}
+* Vin2 ui_in2 GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h2} {p2}
+* Vin3 ui_in3 GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h3} {p3}
+* Vin4 ui_in4 GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h4} {p4}
+* Vin5 ui_in5 GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h5} {p5}
+* Vin6 ui_in6 GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h6} {p6}
+* Vin7 ui_in7 GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h0} {p0}
+
 * --- Mode 3: XOR pattern:
-Vin0 ui_in[0] GND dc 0.0
-Vin1 ui_in[1] GND dc 0.0
-Vin2 ui_in[2] GND dc 0.0
-Vin3 ui_in[3] GND dc 0.0
-Vin4 ui_in[4] GND dc {vcc}
-Vin5 ui_in[5] GND dc {vcc}
-Vin6 ui_in[6] GND dc 0.0
-Vin7 ui_in[7] GND dc 0.0
+Vin0 ui_in0 GND dc 0.0
+Vin1 ui_in1 GND dc 0.0
+Vin2 ui_in2 GND dc 0.0
+Vin3 ui_in3 GND dc 0.0
+Vin4 ui_in4 GND dc {vcc}
+Vin5 ui_in5 GND dc {vcc}
+Vin6 ui_in6 GND dc 0.0
+Vin7 ui_in7 GND dc 0.0
 
 * Digital clock signal
 aclock 0 clk clock
 .model clock d_osc cntl_array=[-1 1] freq_array=[25Meg 25Meg]
 
 * reset signal
-Vreset rst_n GND PULSE 1.8 0 40n 1n 1n 120n 34m ;256u
+Vreset rst_n GND PULSE {vcc} 0 20n 1n 1n 80n 34m ;256u
 
 .control
-    tran 8n 16.8m 0 8n UIC
-    *plot ua[0]
-    *NOTE: We write out:
-    * ua[0]      = R internal
-    * ua[1]      = G internal
-    * ua[2]      = B internal
-    * routpin    = R external
-    * goutpin    = G external
-    * boutpin    = B external
-    * uo[7]      = hsync
-    * uo[3]      = vsync
-    * uio_out[1] = hblank
-    * uio_out[0] = vblank
-    write mixed.raw
-    + v(ua[0])
-    + v(ua[1])
-    + v(ua[2])
+    save
+    + v(ua0)
+    + v(ua1)
+    + v(ua2)
     + v(routpin)
     + v(goutpin)
     + v(boutpin)
-    + v(uo[7])
-    + v(uo[3])
-    + v(uio_out[1])
-    + v(uio_out[0])
-  quit
+    + v(uo_out7)
+    + v(uo_out3)
+    + v(uio_out1)
+    + v(uio_out0)
+    tran 8n 8193u 0 8n UIC ; 8192u is about 256 lines.
+    *plot routpin goutpin boutpin
+    *NOTE: We write out:
+    * ua0        = R internal
+    * ua1        = G internal
+    * ua2        = B internal
+    * routpin    = R external
+    * goutpin    = G external
+    * boutpin    = B external
+    * uo_out7    = hsync
+    * uo_out3    = vsync
+    * uio_out1   = hblank
+    * uio_out0   = vblank
+    write full_spice_sim.raw
+    + v(ua0)
+    + v(ua1)
+    + v(ua2)
+    + v(routpin)
+    + v(goutpin)
+    + v(boutpin)
+    + v(uo_out7)
+    + v(uo_out3)
+    + v(uio_out1)
+    + v(uio_out0)
 .endc
 .end
 
