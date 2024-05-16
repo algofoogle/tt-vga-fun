@@ -1,4 +1,4 @@
-SRC_RAW ?= fss_select.raw
+SRC_RAW ?= full_spice_sim.raw
 OUT_PPM ?= ~/HOST_Documents/fss.ppm
 
 cleanmixed: clean mixed render

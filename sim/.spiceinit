@@ -4,7 +4,7 @@ echo Using tt-vga-fun/sim/.spiceinit
 set ngbehavior=hsa     ; set compatibility for reading PDK libs
 set skywaterpdk        ; skip some checks for faster lib loading
 set ng_nomodcheck      ; don't check the model parameters
-set num_threads=12     ; CPU processor cores available
+set num_threads=14     ; CPU processor cores available
 set xtrtol=10
 option noinit          ; don't print operating point data
 option klu             ; select KLU as matrix solver
