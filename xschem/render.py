@@ -11,33 +11,28 @@ SRC = 'mixed.raw' if len(sys.argv)<2 else sys.argv[1]
 # Output image file to create:
 OUT = '~/HOST_Documents/mixed_raw.ppm' if len(sys.argv)<3 else sys.argv[2]
 
-HS = 'V(hsync)'
+HS = 'V(hsync)' #NOTE: Not yet used.
 
 # ===== Image writer's RGB channel source definitions =====
 
-# # --- Use raw PEX model output for all 3 channels ---
-# VR = 'V(out_parax)'
-# VG = 'V(out_parax)'
-# VB = 'V(out_parax)'
-
-# --- Buffered outputs ---
+# --- Final TT outputs with pin load (500R, 5pF) ---
 VR = 'V(routpin)'
 VG = 'V(goutpin)'
 VB = 'V(boutpin)'
 
-# # --- Terribly unbuffered outputs ---
+# # --- Example of terribly unbuffered outputs ---
 # VR = 'V(rdacxhzpin)'
 # VG = 'V(gdacxhzpin)'
 # VB = 'V(bdacxhzpin)'
 
-# ===== Output range scaling =====
-# # Typical amplified outputs:
-# scale_min = 0.30
-# scale_max = 1.30
-
-# Typical raw DAC unbuffered range:
+# ===== Output range scaling (mapping min to 0, max to 255) =====
+# --- Typical raw DAC unbuffered range: ---
 scale_min = 0.00
 scale_max = 1.80
+
+# # --- Typical amplified outputs: ---
+# scale_min = 0.30
+# scale_max = 1.30
 
 
 # piecewise_linear_interpolation
@@ -85,12 +80,14 @@ def pwlerp(time_points, output_values, interval=0.1):
 
     return sampled_times, sampled_values
 
-
+# Read all data from ngspice .raw file:
 data = ltspice.Ltspice(SRC)
 print(f'Loading {SRC}... ', end='')
 data.parse()
 print('Done')
-t = data.get_time()
+t = data.get_time() # Get array of sample times
+
+
 # rdata = data.get_data(VR)
 # gdata = data.get_data(VG)
 # bdata = data.get_data(VB)

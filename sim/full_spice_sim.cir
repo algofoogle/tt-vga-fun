@@ -125,49 +125,79 @@ Vin5 ui_in5 GND dc {vcc}
 Vin6 ui_in6 GND dc 0.0
 Vin7 ui_in7 GND dc 0.0
 
-* Digital clock signal
-aclock 0 clk clock
-.model clock d_osc cntl_array=[-1 1] freq_array=[25Meg 25Meg]
+* * Digital clock signal
+* aclock 0 clk clock
+* .model clock d_osc cntl_array=[-1 1] freq_array=[25Meg 25Meg]
 
+* Pulse generators...
+*       net     ref fn     init   alt  dly  rise  fall  dut  period
+* 25MHz clock:
+Vclk    clk     GND PULSE   0.0 {vcc}   0n    1n    1n  20n  40n
 * reset signal
-Vreset rst_n GND PULSE {vcc} 0 20n 1n 1n 80n 34m ;256u
+Vreset  rst_n   GND PULSE {vcc}   0.0  10n    1n    1n  80n  34m
 
 .control
     save
+    + i(vcc)
     + v(ua0)
     + v(ua1)
     + v(ua2)
     + v(routpin)
     + v(goutpin)
     + v(boutpin)
-    + v(uo_out7)
+    + v(uo_out0)
+    + v(uo_out1)
+    + v(uo_out2)
     + v(uo_out3)
-    + v(uio_out1)
+    + v(uo_out4)
+    + v(uo_out5)
+    + v(uo_out6)
+    + v(uo_out7)
     + v(uio_out0)
-    tran 8n 8193u 0 8n UIC ; 8192u is about 256 lines.
+    + v(uio_out1)
+    + clk
+    + rst_n
+    tran 500p 8193u 0 500p UIC ; 8192u is about 256 lines.
     *plot routpin goutpin boutpin
     *NOTE: We write out:
-    * ua0        = R internal
-    * ua1        = G internal
-    * ua2        = B internal
-    * routpin    = R external
-    * goutpin    = G external
-    * boutpin    = B external
-    * uo_out7    = hsync
-    * uo_out3    = vsync
-    * uio_out1   = hblank
-    * uio_out0   = vblank
+    * ua0           = R internal
+    * ua1           = G internal
+    * ua2           = B internal
+    * routpin       = R external
+    * goutpin       = G external
+    * boutpin       = B external
+    * uo_out0       = r7
+    * uo_out1       = g7
+    * uo_out2       = b7
+    * uo_out3       = vsync
+    * uo_out4       = r6
+    * uo_out5       = g6
+    * uo_out6       = b6
+    * uo_out7       = hsync
+    * uio_out0      = vblank
+    * uio_out1      = hblank
+    * clk
+    * rst_n
     write full_spice_sim.raw
+    + i(vcc)
     + v(ua0)
     + v(ua1)
     + v(ua2)
     + v(routpin)
     + v(goutpin)
     + v(boutpin)
-    + v(uo_out7)
+    + v(uo_out0)
+    + v(uo_out1)
+    + v(uo_out2)
     + v(uo_out3)
-    + v(uio_out1)
+    + v(uo_out4)
+    + v(uo_out5)
+    + v(uo_out6)
+    + v(uo_out7)
     + v(uio_out0)
+    + v(uio_out1)
+    + clk
+    + rst_n
 .endc
 .end
 
