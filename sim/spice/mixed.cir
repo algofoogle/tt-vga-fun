@@ -31,8 +31,8 @@ adut
 * connect the driver to the R2R dac
 * had to edit spice exported by xschem to add the subckt and ends
 
-.include "../xschem/simulation/r2r.spice" 
-.include "../xschem/simulation/dacboost.spice" 
+.include "../../xschem/simulation/r2r.spice" 
+.include "../../xschem/simulation/dacboost.spice" 
 *.include "../mag/r2r.spice" 
 
 
@@ -167,6 +167,22 @@ Vin7 in7 GND dc 0.0
 
 
 .control
+  save 
+  + clk rst_n
+  + in0 in1 in2 in3 in4 in5 in6 in7
+  + hsync vsync hblank vblank
+  + r7 r6 r5 r4 r3 r2 r1 r0
+  + g7 g6 g5 g4 g3 g2 g1 g0
+  + b7 b6 b5 b4 b3 b2 b1 b0
+  + dr7 dg7 db7
+  + dr6 dg6 db6
+  + rdac gdac bdac 
+  + rdachzpin gdachzpin bdachzpin
+  + rdachhzpin gdachhzpin bdachhzpin
+  + rdacxhzpin gdacxhzpin bdacxhzpin
+  + rout gout bout
+  + routpin goutpin boutpin
+
   * 16.8ms is 1 full frame.
   tran 8n 16.8m 0 8n UIC
   * let r_digi = (r7/2)+(r6/4)+(r5/8)+(r4/16)+(r3/32)+(r2/64)+(r1/128)+(r0/256)
@@ -193,7 +209,7 @@ Vin7 in7 GND dc 0.0
   * outpin = dacboost output, after TT pin.
   * dachzpin = unbuffered DAC output, after TT pin.
   * dachhzpin = weak digital drive unbuffered DAC output, after TT pin.
-  write mixed.raw
+  write sim_out/mixed.raw
   + v(rdac)
   + v(gdac)
   + v(bdac)

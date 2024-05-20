@@ -6,7 +6,7 @@ Full circuit sim of extracted digital and analog blocks
 *NOTE: In order to use this, you must first extract tt_um_algofoogle_tt06_grab_bag.sim.spice
 * by being in the mag/ directory and running: make tt_um_algofoogle_tt06_grab_bag.sim.spice
 
-.include "../mag/tt_um_algofoogle_tt06_grab_bag.sim.spice"
+.include "../../mag/tt_um_algofoogle_tt06_grab_bag.sim.spice"
 
 * Disable mismatch:
 .param mc_mm_switch=0
@@ -181,7 +181,7 @@ Vreset  rst_n   GND PULSE {vcc}   0.0  10n    1n    1n  80n  34m
     * uio_out1      = hblank
     * clk
     * rst_n
-    write fss8n000tr8.raw
+    write sim_out/fss8n000.raw
     + i(vcc)
     + v(ua0)
     + v(ua1)

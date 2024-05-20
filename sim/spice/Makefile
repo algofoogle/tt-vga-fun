@@ -6,7 +6,7 @@ cleanmixed: clean mixed render
 cleanfull: clean full render
 
 render:
-	python3 ../xschem/render.py $(SRC_RAW) $(OUT_PPM)
+	python3 ../../xschem/render.py $(SRC_RAW) $(OUT_PPM)
 	ls -alh $(OUT_PPM)
 
 full: full_spice_sim.cir
@@ -15,7 +15,7 @@ full: full_spice_sim.cir
 mixed: mixed.cir spicewrap.so
 	ngspice $<
 
-spicewrap.so: spicewrap.v ../verilog/controller.v ../verilog/vga_sync.v
+spicewrap.so: spicewrap.v ../../verilog/controller.v ../../verilog/vga_sync.v
 	ngspice vlnggen $^
 
 clean:
