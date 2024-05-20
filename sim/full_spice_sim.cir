@@ -157,7 +157,7 @@ Vreset  rst_n   GND PULSE {vcc}   0.0  10n    1n    1n  80n  34m
     + v(uio_out1)
     + clk
     + rst_n
-    tran 500p 8193u 0 500p UIC ; 8192u is about 256 lines.
+    tran 8n 8193u 0 8n UIC ; 8192u is about 256 lines.
     *plot routpin goutpin boutpin
     *NOTE: We write out:
     * ua0           = R internal
@@ -178,7 +178,7 @@ Vreset  rst_n   GND PULSE {vcc}   0.0  10n    1n    1n  80n  34m
     * uio_out1      = hblank
     * clk
     * rst_n
-    write full_spice_sim.raw
+    write fss8n000.raw
     + i(vcc)
     + v(ua0)
     + v(ua1)
