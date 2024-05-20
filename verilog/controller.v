@@ -1,46 +1,14 @@
 `default_nettype none
 
 module controller(
-  input wire clk,
-  input wire rst_n,
-  input wire [7:0] ui_in,
-  output wire hsync, vsync,   // Polarity determined by vga_sync module per vga_timing_mode.
-  output wire hblank, vblank, // High during blanking.
-  output wire [7:0] r, g, b,       // Primarily goes to DAC.
-  output wire r7,g7,b7, r6,g6,b6  // Extra convenience outputs to wire up to digital outs on the north side of the macro.
-
-  // // Debug stuff:
-  // output wire [7:0] o_mode,
-  // output wire o_reset,
-  // output wire o_visible,
-  // output wire [7:0] o_rampc,
-  // output wire o_clk,
-  // output wire [7:0] o_in,
-  // output wire o_clk2,
-  // output wire o_zero,
-  // output wire o_one
-
+  input   wire        clk,
+  input   wire        rst_n,
+  input   wire [7:0]  ui_in,
+  output  wire        hsync, vsync,      // Polarity determined by vga_sync module per vga_timing_mode.
+  output  wire        hblank, vblank,    // High during blanking.
+  output  wire [7:0]  r, g, b,           // Primarily goes to DAC.
+  output  wire        r7,g7,b7, r6,g6,b6 // Extra convenience outputs to wire up to digital outs on the north side of the macro.
 );
-
-  // // Debug stuff:
-  // assign o_mode = mode_params;
-  // assign o_reset = reset;
-  // assign o_visible = visible;
-  // assign o_rampc = rampc;
-  // assign o_in = {
-  //   ui_in[7],
-  //   ui_in[6] | 1'b1,
-  //   ui_in[5] & 1'b0,
-  //   ui_in[4],
-  //   1'b1,
-  //   1'b0,
-  //   ui_in[1:0]
-  // };
-  // assign o_clk = clk;
-  // assign o_clk2 = clk;
-  // assign o_zero = 1'b0;
-  // assign o_one = 1'b1;
-
   localparam MODE_PASS = 0;
   localparam MODE_RAMP = 1;
   localparam MODE_BARS = 2;

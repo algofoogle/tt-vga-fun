@@ -84,6 +84,8 @@ Cb2 boutpin         GND 5p
 .param vcc=1.8
 vcc vcc 0 {vcc}
 
+*NOTE: Can using .csparam (https://electronics.stackexchange.com/a/635638)
+* here be used to simplify this?
 .param rise=     1n
 .param fall=     1n
 * Duty cycle (high time) of each digital input:
@@ -137,6 +139,7 @@ Vclk    clk     GND PULSE   0.0 {vcc}   0n    1n    1n  20n  40n
 Vreset  rst_n   GND PULSE {vcc}   0.0  10n    1n    1n  80n  34m
 
 .control
+    * option trtol=8 reltol=2e-3
     save
     + i(vcc)
     + v(ua0)
@@ -178,7 +181,7 @@ Vreset  rst_n   GND PULSE {vcc}   0.0  10n    1n    1n  80n  34m
     * uio_out1      = hblank
     * clk
     * rst_n
-    write fss8n000.raw
+    write fss8n000tr8.raw
     + i(vcc)
     + v(ua0)
     + v(ua1)
