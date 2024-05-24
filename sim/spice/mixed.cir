@@ -232,6 +232,6 @@ Vin7 in7 GND dc 0.0
   + v(vsync)
   + v(hblank)
   + v(vblank)
-  quit
+  * quit
 .endc
 .end

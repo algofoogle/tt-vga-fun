@@ -43,7 +43,7 @@ using namespace std;
   #include "Vcontroller_controller.h"       // Needed for accessing "verilator public" stuff in `controller`
 #endif
 
-#define FONT_FILE "sim/font-cousine/Cousine-Regular.ttf"
+#define FONT_FILE "font-cousine/Cousine-Regular.ttf"
 
 #define CLOCK_HZ    25'000'000
 
@@ -204,22 +204,41 @@ void toggle_mouse_capture(bool force = false, bool force_to = false) {
 }
 
 
-void tt_vga_fun_mode3() {
+void tt_vga_fun_mode_base(int input, int final = -1) {
   // Assert reset:
   TB->m_core->rst_n = 0;
   // Apply mode to ui_in:
-  TB->m_core->ui_in = 0x30; //0_011_0000
+  TB->m_core->ui_in = input; //0_011_0000
   // Tick twice:
   TB->tick();
   TB->tick();
   // Now release reset:
-  TB->m_core->rst_n = 0;
+  TB->m_core->rst_n = 1;
   // One more tick:
   TB->tick();
-  // Now clear ui_in:
-  TB->m_core->ui_in = 0;
+  if (final != -1) {
+    // Now set final state of ui_in:
+    TB->m_core->ui_in = final;
+  }
   // Signal that we need a screen resync:
   gDisplayResync = true;
+}
+
+
+void tt_vga_fun_mode3() {
+  tt_vga_fun_mode_base(0b00110000); // 0_011_xxxx = MODE_XORS
+}
+
+void tt_vga_fun_mode1(int primary) {
+  tt_vga_fun_mode_base(0b00010000 | primary); //0_001_00pp = MODE_RAMP; pp = primary
+}
+
+void tt_vga_fun_mode0(int final) {
+  tt_vga_fun_mode_base(0, final);
+}
+
+void tt_vga_fun_toggle_ui_in(int bit) {
+  TB->m_core->ui_in ^= (1<<bit);
 }
 
 
@@ -237,9 +256,6 @@ void process_sdl_events() {
         case SDLK_F12:
           // Toggle mouse capture.
           toggle_mouse_capture();
-          break;
-        case SDLK_F4:
-          tt_vga_fun_mode3();
           break;
         case SDLK_ESCAPE:
           gQuit = true;
@@ -354,6 +370,46 @@ void process_sdl_events() {
 
         default:
 
+          if (KMOD_SHIFT & e.key.keysym.mod) {
+            switch (e.key.keysym.sym) {
+              // Specific modes we want to control:
+              case SDLK_F1:
+                tt_vga_fun_mode3(); // MODE_XORS
+                break;
+              case SDLK_F2:
+                tt_vga_fun_mode1(0);  // MODE_RAMP: R pri, G sec, B fade.
+                break;
+              case SDLK_F3:
+                tt_vga_fun_mode1(1);  // MODE_RAMP: R fade, G pri, B sec.
+                break;
+              case SDLK_F4:
+                tt_vga_fun_mode1(2);  // MODE_RAMP: R sec, G fade, B pri.
+                break;
+              case SDLK_F5:
+                tt_vga_fun_mode1(3);  // MODE_RAMP: All primary.
+                break;
+              case SDLK_F6:
+                tt_vga_fun_mode0(127);  // MODE_PASS: With lum 127.
+                break;
+            }
+          }
+          else {
+            int b = 0;
+            switch (e.key.keysym.sym) {
+              // Toggle a ui_in bit:
+              case SDLK_F1: ++b;
+              case SDLK_F2: ++b;
+              case SDLK_F3: ++b;
+              case SDLK_F4: ++b;
+              case SDLK_F5: ++b;
+              case SDLK_F6: ++b;
+              case SDLK_F7: ++b;
+              case SDLK_F8:
+                tt_vga_fun_toggle_ui_in(b);
+                break;
+            }
+          }
+
           // Not in Override Vectors mode; let the design handle motion.
           switch (e.key.keysym.sym) {
             case SDLK_BACKQUOTE: //NOTE: As a scancode, the backtick is SDL_SCANCODE_GRAVE.
@@ -412,7 +468,7 @@ void handle_control_inputs(bool prepare, double t) {
     // ACTIVE mode: Read the momentary state of all keyboard keys, and add them via `|=` to whatever is already asserted:
     auto keystate = SDL_GetKeyboardState(NULL);
 
-    TB->m_core->ui_in = 0x30; //0b0_011_0000;
+    // TB->m_core->ui_in = 0x30; //0b0_011_0000;
 
     TB->m_core->rst_n    &= !keystate[SDL_SCANCODE_R];
     // TB->m_core->i_debug   = gLockInputs[LOCK_DEBUG]; // | keystate[SDL_SCANCODE_GRAVE];
@@ -906,6 +962,14 @@ int main(int argc, char **argv) {
     #endif
       s += gMouseCapture        ? "*" : ".";
       s += "] ";
+      s += "ui_in: ";
+      int uii = TB->m_core->ui_in;
+      for (int b = 0; b<8; ++b) {
+        s += (uii & 0x80) ? "1" : "0";
+        if (b==3) s+= "'";
+        uii <<= 1;
+      }
+
 #ifdef INSPECT_INTERNAL
       s += " pX,Y=("
         + to_string(fixed2double(TB->m_core->DESIGN->playerX)) + ", "

@@ -1,74 +1,125 @@
 # Controller
 
+## Selecting display mode and options
+
+### Common to all modes
+
+At reset, `ui_in[7]` selects VGA timing:
+
+*   0 = Regular 640x480@59.94Hz from 25.175MHz clock
+*   1 = 1440x900@60Hz from 26.6175MHz clock
+
+### Mode 0 (MODE_PASS)
+
+Pass ui_in directly to all DACs (greyscale output).
+
+#### `ui_in` at reset
+
+```
+76543210
+-000----    Mode
+------g-    Gate: 0 = ungated; 1 = gated by VGA blanking
+-------r    Registered: 0 = unregistered; 1 = registered
+```
+
+#### After reset
+
+`ui_in` passes directly to the inputs of all 3 DACs, meaning it controls a greyscale output.
+
+
+#### Expected testing/behaviour
+
+Before the very first power-on, hold the design in reset and ground all `ui_in`s.
+
+Power on, and DAC outputs should all be their lowest level, i.e. internal digital outs should be 0. This means there should be no current thru any part of the DACs.
+
+NOTE: In this mode, there is no VGA blanking, so the `ui_in` => DAC => analog out signal should be uninterrupted.
+
+Put a scope on (say) R analog output and use HSYNC as trigger, then release reset. HSYNC should become active, while R should be 0V.
+
+Turn on `ui_in[1]`. Internally this will bring the respective DAC input pin to 1.8V, while its neighbours are at 0V.
+*   The resulting output voltage is estimated to be about 1.8*(2/255) = 0.014V, but it could be a little lower because I should've used a final 2R to GND in the DAC, but only used R.
+*   Because the DAC's digital input feeds a 20k resistor, this should mean a maximum of 90uA, but beware: The resistor width is 0.69um, so that's a current of 90/0.69 => 130uA, which exceeds the maximum 100uA recommended for this type of resistor.
+*   In practice, hopefully we'll find that there is more current limiting by virtue of the digital circuit's output buffer drive strength (and likewise that of the other digital pins).
+
+Turn off `ui_in[1]` and turn on any *one* of 2..6 at a time -- a respective power-of-2 voltage increase should be seen.
+
+Turn off the system, then hold the design in reset, tie `ui_in[1]` high, and then turn the system on. R output should remain at 0V until you release reset, then you should observe the R output at ~0.014V *except* when it now falls to 0V because of video blanking.
+
+Try turning on more than one `ui_in` at the same time, avoiding 0 and 7 for now.
+
+
+
+
 ## Pinouts
 
 ### `ui_in`
 
-*   **DONE:** See detailed info below about reset state
+*   See [Selecting display mode and options](#selecting-display-mode-and-options)
 
 ### `uo_out`
 
 These match the Tiny VGA PMOD - See: https://github.com/algofoogle/tt05-vga-spi-rom/blob/9208ed836d03bb5593d383a55a8ddcab464ed9d2/src/tt05_top.v#L13-L23
 
-0.  **DONE**: `red[7]`
-1.  **DONE**: `green[7]`
-2.  **DONE**: `blue[7]`
-3.  **DONE**: `vsync`
-4.  **DONE**: `red[6]`
-5.  **DONE**: `green[6]`
-6.  **DONE**: `blue[6]`
-7.  **DONE**: `hsync`
+0.  `red[7]`
+1.  `green[7]`
+2.  `blue[7]`
+3.  `vsync`
+4.  `red[6]`
+5.  `green[6]`
+6.  `blue[6]`
+7.  `hsync`
 
 ### `ua`
 
-0.  **DONE:** `red`
-1.  **DONE:** `green`
-2.  **DONE:** `blue`
+0.  `red`
+1.  `green`
+2.  `blue`
 3.  **DONE (nil):** (none)
 4.  **DONE (nil):** (none)
-5.  **DONE**: `Y` (inverter output)
+5.  `Y` (inverter output)
 
 ### bidir
 
-0.  **DONE:** OUT: vblank
-1.  **DONE:** OUT: hblank
-2.  **DONE:** OUT: `Y` (copy of inverter output)
+0.  OUT: vblank
+1.  OUT: hblank
+2.  OUT: `Y` (copy of inverter output)
 3.  **DONE (nil):** (IN: unused)
 4.  **DONE (nil):** (IN: unused)
 5.  **DONE (nil):** (IN: unused)
 6.  **DONE (nil):** (IN: unused)
-7.  **DONE:** IN: `A` (inverter input)
+7.  IN: `A` (inverter input)
 
 `uio_oe` ties:
 
-0.  **DONE:** *VPWR*
-1.  **DONE:** *VPWR*
-2.  **DONE:** *VPWR*
-3.  **DONE:** VGND
-4.  **DONE:** VGND
-5.  **DONE:** VGND
-6.  **DONE:** VGND
-7.  **DONE:** *VPWR*
+0.  *VPWR*
+1.  *VPWR*
+2.  *VPWR*
+3.  VGND
+4.  VGND
+5.  VGND
+6.  VGND
+7.  *VPWR*
 
 `uio_out` ties:
 
-3.  **DONE:** VGND
-4.  **DONE:** VGND
-5.  **DONE:** VGND
-6.  **DONE:** VGND
-7.  **DONE:** VGND
+3.  VGND
+4.  VGND
+5.  VGND
+6.  VGND
+7.  VGND
 
 ### Power
 
 *   Controller:
-    *   **DONE:** VPWR
-    *   **DONE:** VGND
+    *   VPWR
+    *   VGND
 *   DACs:
-    *   **DONE:** VGND
-    *   **DONE:** VSUBS
+    *   VGND
+    *   VSUBS
 *   Inverter:
-    *   **DONE:** VPWR (VDD)
-    *   **DONE:** VGND (VSS)
+    *   VPWR (VDD)
+    *   VGND (VSS)
 
 
 
@@ -87,13 +138,13 @@ This is part of an intended mixed-signal design. Not properly implemented yet.
 
 
 
+
+
 ```
 
 Mode selected by ui_in at reset:
 
 Bit 7 specifies VGA timing selection:
-    0 = Regular 640x480@59.94Hz from 25.175MHz clock
-    1 = 1440x900@60Hz from 26.6175MHz clock
 
 Mode 0: Pass ui_in directly to all 3 DACs:
     76543210
@@ -108,7 +159,7 @@ Mode 1: Ramp tests:
                 0 = red
                 1 = green
                 2 = blue
-                4 = all
+                3 = all
 
 Mode 2: Bars test: Ramp interleaved with negative ramp on alternate pixels
     -010----    Mode
@@ -117,7 +168,7 @@ Mode 2: Bars test: Ramp interleaved with negative ramp on alternate pixels
                 0 = red
                 1 = green
                 2 = blue
-                4 = all
+                3 = all
 
 Mode 3: XOR patterns
 ...SEE BELOW...
