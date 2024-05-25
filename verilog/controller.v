@@ -112,7 +112,9 @@ module controller(
   end
 
   // Direct outputs to DACs (with blanking):
-  assign {r,g,b} = visible ? {tr,tg,tb} : 0;
+  wire ungated_mode0 = (mode == MODE_PASS && !gate);
+  wire enable_out = visible || ungated_mode0; //NOTE: mode 0 (PASS) can optionally disable gating.
+  assign {r,g,b} = enable_out ? {tr,tg,tb} : 0;
 
   // Intermediate video values (before blanking, etc):
   wire [7:0] tr, tg, tb;
@@ -120,6 +122,7 @@ module controller(
   // Last 16 pixels of the display are the 'gutter' for debug stuff:
   wire gutter = h[9:4] == 6'b100111;
   wire vbit = vv[ ~h[3:0] ];
+  wire [23:0] vbit24 = {24{vbit}};
 
   wire [23:0] mode_ramp_base = (
     primary == 0 ?    {rampa, rampb, rampc} : // Red primary, green secondary, blue fade.
@@ -128,10 +131,16 @@ module controller(
                       {rampa, rampa, rampa}   // All primary.
   );
 
+  wire [23:0] grey_pass = {ui_in, ui_in, ui_in};
+
   // For now, just worry about unregistered outputs:
   assign {tr,tg,tb} =
-    gutter ? {24{vbit}} :
-    (mode == MODE_PASS) ? {ui_in, ui_in, ui_in} :
+    // In ungated mode 0, we pass inputs to outputs no matter what:
+    ungated_mode0       ? grey_pass :
+    // Otherwise, during the gutter, we output the line debug bits; dimmed to ui_in in PASS mode, or full brightness otherwise:
+    gutter              ? ( (mode == MODE_PASS) ? (vbit24 & grey_pass) : vbit24 ) :
+    // Otherwise, just produce output based on whatever the mode generates:
+    (mode == MODE_PASS) ? grey_pass :
     (mode == MODE_RAMP) ? mode_ramp_base :
     (mode == MODE_BARS) ? ( mode_ramp_base ^ ( v<256 ? {24{ramphdiv[0]}} : {24{h[0]}} ) ) :
     (mode == MODE_XOR1) ? x1rgb :
@@ -182,23 +191,21 @@ module mode_xor2(
 
 endmodule
 
-
+// xor3 is just a static version of xor2:
 module mode_xor3(
   input wire [9:0] h, v,
   input wire [11:0] tt,
   output wire [23:0] rgb
 );
 
-  wire [7:0] t = 0;
-
 /* verilator lint_off WIDTHEXPAND */
 /* verilator lint_off WIDTHTRUNC */
-  wire [7:0] ax = (h + (t>>3)) >> 1;
-  wire [7:0] ay = (v + (t>>3)) >> 1;
-  wire [7:0] bx = (h + (t>>2));
-  wire [7:0] by = (v + (t>>1));
-  wire [7:0] cx = (h + (t>>1)) << 1;
-  wire [7:0] cy = (v + (t>>2)) << 1;
+  wire [7:0] ax = h >> 1;
+  wire [7:0] ay = v >> 1;
+  wire [7:0] bx = h;
+  wire [7:0] by = v;
+  wire [7:0] cx = h << 1;
+  wire [7:0] cy = v << 1;
 /* verilator lint_on WIDTHTRUNC */
 /* verilator lint_on WIDTHEXPAND */
 

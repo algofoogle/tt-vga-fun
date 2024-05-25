@@ -237,8 +237,12 @@ void tt_vga_fun_mode0(int final) {
   tt_vga_fun_mode_base(0, final);
 }
 
-void tt_vga_fun_toggle_ui_in(int bit) {
-  TB->m_core->ui_in ^= (1<<bit);
+void tt_vga_fun_toggle_ui_in(int bits) {
+  TB->m_core->ui_in ^= bits;
+}
+
+void tt_vga_fun_set_ui_in(int bits) {
+  TB->m_core->ui_in = bits;
 }
 
 
@@ -405,7 +409,15 @@ void process_sdl_events() {
               case SDLK_F6: ++b;
               case SDLK_F7: ++b;
               case SDLK_F8:
-                tt_vga_fun_toggle_ui_in(b);
+                tt_vga_fun_toggle_ui_in(1<<b);
+                break;
+              case SDLK_F9:
+                // Set all:
+                tt_vga_fun_set_ui_in(0b11111111);
+                break;
+              case SDLK_F10:
+                // Clear all:
+                tt_vga_fun_set_ui_in(0);
                 break;
             }
           }
