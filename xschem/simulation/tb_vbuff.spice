@@ -1,0 +1,60 @@
+** sch_path: /home/anton/projects/tt-vga-fun/xschem/tb_vbuff.sch
+**.subckt tb_vbuff
+x1 vcc vin vout GND vbuff
+V1 vcc GND 1.8
+V2 vin GND pwl 0 0 10n 0 60n 1.8 100n 1.8 110n 0
+**** begin user architecture code
+
+
+
+.param VCC=1.8
+*vvss vss 0 dc 0
+*vvcc vcc 0
+*+ pwl 0 0 10n 0 10.1n VCC 20n VCC 20.1n 0
+**** interactive sim
+.control
+  save all
+  tran 0.004n 180n
+  write tb_vbuff.raw
+* quit 0
+.endc
+
+
+
+
+.param mc_mm_switch=0
+.param mc_pr_switch=0
+.include /home/anton/.volare/volare/sky130/versions/bdc9412b3e468c102d01b7cf6337be06ec6e9c9a/sky130A/libs.tech/ngspice/corners/tt.spice
+.include /home/anton/.volare/volare/sky130/versions/bdc9412b3e468c102d01b7cf6337be06ec6e9c9a/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical.spice
+.include /home/anton/.volare/volare/sky130/versions/bdc9412b3e468c102d01b7cf6337be06ec6e9c9a/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical__lin.spice
+.include /home/anton/.volare/volare/sky130/versions/bdc9412b3e468c102d01b7cf6337be06ec6e9c9a/sky130A/libs.tech/ngspice/corners/tt/specialized_cells.spice
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  vbuff.sym # of pins=4
+** sym_path: /home/anton/projects/tt-vga-fun/xschem/vbuff.sym
+** sch_path: /home/anton/projects/tt-vga-fun/xschem/vbuff.sch
+.subckt vbuff VPWR vin vout VGND
+*.iopin VPWR
+*.ipin vin
+*.opin vout
+*.iopin VGND
+XM1 net2 vin net1 VGND sky130_fd_pr__nfet_01v8 L=0.15 W=8 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM9 net2 net2 VPWR VPWR sky130_fd_pr__pfet_01v8 L=0.6 W=16 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM2 net3 vout net1 VGND sky130_fd_pr__nfet_01v8 L=0.15 W=3 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM3 net3 net2 VPWR VPWR sky130_fd_pr__pfet_01v8 L=0.6 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM4 net1 VPWR VGND VGND sky130_fd_pr__nfet_01v8 L=0.75 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM5 VPWR net3 vout VGND sky130_fd_pr__nfet_01v8 L=0.6 W=10 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM6 vout VPWR VGND VGND sky130_fd_pr__nfet_01v8 L=0.6 W=8 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+.GLOBAL GND
+.end

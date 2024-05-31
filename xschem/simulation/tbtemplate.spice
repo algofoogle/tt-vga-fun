@@ -1,0 +1,56 @@
+** sch_path: /home/anton/projects/tt-vga-fun/xschem/tbtemplate.sch
+**.subckt tbtemplate
+XM1 vcc D7 out GND sky130_fd_pr__nfet_01v8 L=0.42 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+V1 vcc GND 1.8
+XM2 vcc D6 out GND sky130_fd_pr__nfet_01v8 L=0.42 W=6 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM3 vcc D5 out GND sky130_fd_pr__nfet_01v8 L=0.42 W=3 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM4 vcc D4 out GND sky130_fd_pr__nfet_01v8 L=0.42 W=1.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM5 vcc D3 out GND sky130_fd_pr__nfet_01v8 L=0.84 W=1.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM6 vcc D2 out GND sky130_fd_pr__nfet_01v8 L=1.68 W=1.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM7 vcc D1 out GND sky130_fd_pr__nfet_01v8 L=3.36 W=1.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM8 vcc D0 out GND sky130_fd_pr__nfet_01v8 L=6.72 W=1.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+R1 out GND 100k m=1
+**** begin user architecture code
+
+
+
+
+VD0 D0 0 PULSE 0 1.8 100n 1n 1n   40n    80n
+VD1 D1 0 PULSE 0 1.8 100n 1n 1n   80n   160n
+VD2 D2 0 PULSE 0 1.8 100n 1n 1n  160n   320n
+VD3 D3 0 PULSE 0 1.8 100n 1n 1n  320n   640n
+VD4 D4 0 PULSE 0 1.8 100n 1n 1n  640n  1280n
+VD5 D5 0 PULSE 0 1.8 100n 1n 1n 1280n  2560n
+VD6 D6 0 PULSE 0 1.8 100n 1n 1n 2560n  5120n
+VD7 D7 0 DC 0 ; PULSE 0 1.8 100n 1n 1n 5120n 10240n
+
+.control
+  save all
+  tran 0.1n 20u
+  write simout.raw
+* quit 0
+.endc
+
+
+
+
+
+.param mc_mm_switch=0
+.param mc_pr_switch=0
+.include /home/anton/.volare/volare/sky130/versions/bdc9412b3e468c102d01b7cf6337be06ec6e9c9a/sky130A/libs.tech/ngspice/corners/tt.spice
+.include /home/anton/.volare/volare/sky130/versions/bdc9412b3e468c102d01b7cf6337be06ec6e9c9a/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical.spice
+.include /home/anton/.volare/volare/sky130/versions/bdc9412b3e468c102d01b7cf6337be06ec6e9c9a/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical__lin.spice
+.include /home/anton/.volare/volare/sky130/versions/bdc9412b3e468c102d01b7cf6337be06ec6e9c9a/sky130A/libs.tech/ngspice/corners/tt/specialized_cells.spice
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end
