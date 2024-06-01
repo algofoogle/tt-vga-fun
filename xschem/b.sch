@@ -166,28 +166,36 @@ N 1560 10 1590 10 {
 lab=vpwr}
 N 1560 10 1560 50 {
 lab=vpwr}
-N 1120 -160 1120 -140 {
-lab=vdac4}
-N 1120 -110 1140 -110 {
+N 1580 -200 1580 -180 {
+lab=vpwr}
+N 1580 -150 1600 -150 {
 lab=GND}
-N 1140 -110 1140 -80 {
+N 1600 -150 1600 -120 {
 lab=GND}
-N 1120 -80 1140 -80 {
+N 1580 -120 1600 -120 {
 lab=GND}
 N 1560 110 1560 140 {
 lab=vpull}
-N 1490 -390 1530 -390 {
-lab=#net16}
-N 1610 -270 1610 -250 {
+N 1550 -390 1590 -390 {
+lab=vdac4pin}
+N 1670 -270 1670 -250 {
 lab=GND}
-N 1610 -390 1610 -330 {
-lab=#net16}
-N 1530 -390 1610 -390 {
-lab=#net16}
-N 1120 -390 1200 -390 {
-lab=vdac4}
+N 1670 -390 1670 -330 {
+lab=vdac4pin}
+N 1590 -390 1670 -390 {
+lab=vdac4pin}
 N 1120 -190 1120 -160 {
 lab=vdac4}
+N 1540 -200 1540 -150 {
+lab=vpwr}
+N 1260 -390 1260 -160 {
+lab=vdac4}
+N 1260 -390 1310 -390 {
+lab=vdac4}
+N 1120 -160 1260 -160 {
+lab=vdac4}
+N 1540 -200 1580 -200 {
+lab=vpwr}
 C {sky130_fd_pr/corner.sym} 20 -190 0 0 {name=CORNER only_toplevel=true corner=tt}
 C {devices/launcher.sym} 90 -50 0 0 {name=h17 
 descr="Load waves" 
@@ -217,7 +225,7 @@ value="
 *  + i(vsteer)
 *  plot
 *  + vdac1 vdac2 vdac3
-  plot vdac4
+  plot vdac4 vdac4pin
 *  plot vpull
 *  + vramp
 *  + v040n
@@ -464,11 +472,11 @@ spiceprefix=X
 mult=1}
 C {devices/gnd.sym} 1800 -200 1 1 {name=l38 lab=GND}
 C {devices/gnd.sym} 1910 -180 0 1 {name=l39 lab=GND}
-C {devices/lab_pin.sym} 1200 -390 3 1 {name=p25 sig_type=std_logic lab=vdac4}
+C {devices/lab_pin.sym} 1260 -390 3 1 {name=p25 sig_type=std_logic lab=vdac4}
 C {devices/lab_pin.sym} 1560 140 1 1 {name=p26 sig_type=std_logic lab=vpull}
-C {sky130_fd_pr/nfet_01v8.sym} 1100 -110 0 0 {name=M6
+C {sky130_fd_pr/nfet_01v8.sym} 1560 -150 0 0 {name=M6
 L=0.5
-W=0.5
+W=4
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -480,19 +488,29 @@ sa=0 sb=0 sd=0
 model=nfet_01v8
 spiceprefix=X
 }
-C {devices/gnd.sym} 1120 -80 0 1 {name=l40 lab=GND}
-C {devices/lab_pin.sym} 1080 -110 0 0 {name=p24 sig_type=std_logic lab=vpwr}
+C {devices/gnd.sym} 1580 -120 0 1 {name=l40 lab=GND}
 C {devices/res.sym} 1560 80 0 0 {name=R7
 value=0
 footprint=1206
 device=resistor
 m=1}
 C {devices/lab_pin.sym} 1560 10 0 0 {name=p27 sig_type=std_logic lab=vpwr}
-C {tt06_analog_load.sym} 1340 -370 0 0 {name=x5}
-C {devices/gnd.sym} 1490 -370 0 0 {name=l41 lab=GND}
-C {devices/res.sym} 1610 -300 0 0 {name=R8
+C {tt06_analog_load.sym} 1400 -370 0 0 {name=x5}
+C {devices/gnd.sym} 1550 -370 0 0 {name=l41 lab=GND}
+C {devices/res.sym} 1670 -300 0 0 {name=R8
 value=1e6
 footprint=1206
 device=resistor
 m=1}
-C {devices/gnd.sym} 1610 -250 0 0 {name=l42 lab=GND}
+C {devices/gnd.sym} 1670 -250 0 0 {name=l42 lab=GND}
+C {sky130_fd_pr/res_high_po_1p41.sym} 1260 -130 0 0 {name=R9
+L=3.3
+model=res_high_po_1p41
+spiceprefix=X
+mult=1}
+C {devices/gnd.sym} 1260 -100 0 0 {name=l43 lab=GND}
+C {devices/gnd.sym} 1240 -130 0 1 {name=l44 lab=GND}
+C {devices/lab_pin.sym} 1540 -200 0 0 {name=p24 sig_type=std_logic lab=vpwr}
+C {devices/lab_pin.sym} 1550 -390 3 1 {name=p28 sig_type=std_logic lab=vdac4pin}
+C {devices/vsource.sym} 1350 -230 0 0 {name=V6 value=0 savecurrent=false}
+C {devices/gnd.sym} 1350 -200 0 0 {name=l45 lab=GND}
