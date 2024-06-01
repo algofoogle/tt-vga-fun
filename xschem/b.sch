@@ -225,6 +225,14 @@ N 1120 -390 1590 -390 {
 lab=vdac4}
 N 1590 -510 1590 -390 {
 lab=vdac4}
+N 1120 -190 1120 -160 {
+lab=vdac4}
+N 1120 -130 1140 -130 {
+lab=GND}
+N 1140 -130 1140 -100 {
+lab=GND}
+N 1120 -100 1140 -100 {
+lab=GND}
 C {sky130_fd_pr/corner.sym} 20 -190 0 0 {name=CORNER only_toplevel=true corner=tt}
 C {devices/launcher.sym} 90 -50 0 0 {name=h17 
 descr="Load waves" 
@@ -486,7 +494,7 @@ C {devices/gnd.sym} 1910 -240 0 1 {name=l40 lab=GND}
 C {tt06_analog_load.sym} 1730 -490 0 0 {name=x5}
 C {devices/gnd.sym} 1880 -490 0 0 {name=l41 lab=GND}
 C {devices/res.sym} 2000 -420 0 0 {name=R8
-value=200
+value=1e6
 footprint=1206
 device=resistor
 m=1}
@@ -544,3 +552,19 @@ sa=0 sb=0 sd=0
 model=pfet_01v8
 spiceprefix=X
 }
+C {sky130_fd_pr/nfet_01v8.sym} 1100 -130 0 0 {name=M8
+L=0.15
+W=2
+nf=1 
+mult=1
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=nfet_01v8
+spiceprefix=X
+}
+C {devices/gnd.sym} 1120 -100 0 1 {name=l35 lab=GND}
+C {devices/lab_pin.sym} 1080 -130 0 0 {name=p27 sig_type=std_logic lab=vpwr}
