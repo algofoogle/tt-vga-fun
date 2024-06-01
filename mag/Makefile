@@ -1,4 +1,4 @@
-PROJECT_NAME ?= tt_um_algofoogle_tt06_grab_bag
+PROJECT_NAME ?= tt_um_algofoogle_tt_vga_fun
 MAGIC_RC := $(PDK_ROOT)/sky130A/libs.tech/magic/sky130A.magicrc
 
 .PHONY: lvs magic start
