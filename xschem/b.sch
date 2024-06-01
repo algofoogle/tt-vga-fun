@@ -475,7 +475,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 1570 -120 0 0 {name=M3
 L=0.15
-W=2.2
+W=2.0
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -492,8 +492,8 @@ C {devices/lab_pin.sym} 1550 -40 0 0 {name=p22 sig_type=std_logic lab=v040n}
 C {devices/lab_pin.sym} 1680 -40 0 0 {name=p23 sig_type=std_logic lab=v080n}
 C {devices/lab_pin.sym} 1810 -40 0 0 {name=p24 sig_type=std_logic lab=v160n}
 C {sky130_fd_pr/pfet_01v8.sym} 1420 -120 0 1 {name=M7
-L=0.15
-W=0.75
+L=0.25
+W=0.5
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -507,7 +507,7 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 2000 10 0 1 {name=p26 sig_type=std_logic lab=vdac4}
 C {sky130_fd_pr/res_high_po_1p41.sym} 1400 0 0 0 {name=R5
-L=10
+L=20
 model=res_high_po_1p41
 spiceprefix=X
 mult=1}
