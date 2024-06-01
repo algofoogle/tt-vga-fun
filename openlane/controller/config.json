@@ -21,12 +21,9 @@
     "FP_PDN_VPITCH": 30,
     "FP_PDN_HPITCH": 30,
     "FP_PDN_SKIPTRIM": true,
-    "//": "This is the old DESIGN_IS_CORE,now PDN_MULTILAYER",
+    "//": "This is the old DESIGN_IS_CORE, now FP_PDN_MULTILAYER",
     "//DESIGN_IS_CORE": "0",
     "FP_PDN_MULTILAYER": "0", 
-    "pdk::sky130*": {
-        "FP_CORE_UTIL": 50
-    },
 
     "//": "Some other stuff below I got from:",
     "//": "https://github.com/mattvenn/tt06-analog-r2r-dac/blob/main/openlane/r2r_dac_control/config.tcl",
@@ -58,11 +55,11 @@
     "//": "Below is the stuff Anton would most like to customise",
 
     "MAX_FANOUT_CONSTRAINT": 4,
-    "FP_SIZING": "absolute",
-    "DIE_AREA": "0 0 120 80",
     "//FP_SIZING": "relative",
-    "FP_CORE_UTIL": 55,
-    "PL_TARGET_DENSITY": 0.60,
+    "FP_SIZING": "absolute",
+    "DIE_AREA": "0 0 150 95",
+    "FP_CORE_UTIL": 80,
+    "PL_TARGET_DENSITY": 0.86,
     "FP_PIN_ORDER_CFG": "dir::pin_order.cfg",
     "//PL_RESIZER_HOLD_SLACK_MARGIN": 0.1,
     "//GLB_RESIZER_HOLD_SLACK_MARGIN": 0.05,
@@ -73,7 +70,7 @@
     "//RUN_CVC": 1,
     "//QUIT_ON_LINTER_ERRORS": 0,
 
-    "ROUTING_CORES": 4,
+    "ROUTING_CORES": 16,
     "RUN_KLAYOUT_XOR": false,
     "RUN_KLAYOUT_DRC": false
 }

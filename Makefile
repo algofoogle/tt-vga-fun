@@ -9,8 +9,8 @@ harden:
 	-e PDK=$(PDK) \
 	-u $(shell id -u $(USER)):$(shell id -g $(USER)) \
 	$(OPENLANE_IMAGE_NAME) \
-	/bin/bash -c "ls -al /work && ./flow.tcl -overwrite -design /work/openlane/$(PROJECT_NAME) -run_path /work/openlane/$(PROJECT_NAME)/runs -tag controller"
+	/bin/bash -c "ls -al /work && ./flow.tcl -ignore_mismatches -overwrite -design /work/openlane/$(PROJECT_NAME) -run_path /work/openlane/$(PROJECT_NAME)/runs -tag $(PROJECT_NAME)"
 
 update_files:
-	cp openlane/$(PROJECT_NAME)/runs/controller/results/final/mag/$(PROJECT_NAME).mag mag/
-	cp openlane/$(PROJECT_NAME)/runs/controller/results/final/verilog/gl/$(PROJECT_NAME).v verilog/gl/
+	cp openlane/$(PROJECT_NAME)/runs/$(PROJECT_NAME)/results/final/gds/$(PROJECT_NAME).gds gds/
+	cp openlane/$(PROJECT_NAME)/runs/$(PROJECT_NAME)/results/final/verilog/gl/$(PROJECT_NAME).v verilog/gl/
