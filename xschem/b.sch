@@ -405,7 +405,7 @@ value="
 
 
   plot 
-  + vdac4*300 vdac4pin*300
+  + vdac4*30 vdac4pin*30
   + v040n+2.0
   + v080n+4
   + v160n+6
@@ -698,7 +698,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8.sym} 1830 90 0 0 {name=M8
 L=0.15
-W=8
+W=1.5
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
