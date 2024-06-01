@@ -142,49 +142,49 @@ lab=vdac4pin}
 N 1590 -510 1640 -510 {
 lab=vdac4}
 N 1590 -190 1590 -150 {
-lab=vpwr}
+lab=#net12}
 N 1590 -190 1720 -190 {
-lab=vpwr}
+lab=#net12}
 N 1720 -190 1850 -190 {
-lab=vpwr}
+lab=#net12}
 N 1850 -190 1850 -150 {
-lab=vpwr}
+lab=#net12}
 N 1720 -190 1720 -150 {
-lab=vpwr}
+lab=#net12}
 N 1690 -240 1720 -240 {
-lab=vpwr}
+lab=#net12}
 N 1720 -240 1720 -190 {
-lab=vpwr}
+lab=#net12}
 N 1590 -120 1610 -120 {
-lab=vpwr}
+lab=#net12}
 N 1610 -150 1610 -120 {
-lab=vpwr}
+lab=#net12}
 N 1590 -150 1610 -150 {
-lab=vpwr}
+lab=#net12}
 N 1720 -150 1740 -150 {
-lab=vpwr}
+lab=#net12}
 N 1740 -150 1740 -120 {
-lab=vpwr}
+lab=#net12}
 N 1720 -120 1740 -120 {
-lab=vpwr}
+lab=#net12}
 N 1850 -120 1870 -120 {
-lab=vpwr}
+lab=#net12}
 N 1870 -150 1870 -120 {
-lab=vpwr}
+lab=#net12}
 N 1850 -150 1870 -150 {
-lab=vpwr}
+lab=#net12}
 N 1810 -170 1810 -120 {
-lab=#net12}
-N 1680 -170 1680 -120 {
-lab=#net12}
-N 1550 -170 1550 -120 {
-lab=#net12}
-N 1590 -90 1590 -70 {
 lab=#net13}
-N 1720 -90 1720 -70 {
+N 1680 -170 1680 -120 {
+lab=#net13}
+N 1550 -170 1550 -120 {
+lab=#net13}
+N 1590 -90 1590 -70 {
 lab=#net14}
-N 1850 -90 1850 -70 {
+N 1720 -90 1720 -70 {
 lab=#net15}
+N 1850 -90 1850 -70 {
+lab=#net16}
 N 1590 -10 1590 10 {
 lab=vdac4}
 N 1590 10 1850 10 {
@@ -194,19 +194,19 @@ lab=vdac4}
 N 1720 -10 1720 10 {
 lab=vdac4}
 N 1440 -120 1550 -120 {
-lab=#net12}
+lab=#net13}
 N 1850 10 2000 10 {
 lab=vdac4}
-N 1400 -90 1400 -30 {
-lab=#net12}
+N 1180 40 1180 100 {
+lab=#net13}
 N 1400 -70 1460 -70 {
-lab=#net12}
+lab=#net13}
 N 1460 -120 1460 -70 {
-lab=#net12}
+lab=#net13}
 N 1400 -190 1400 -150 {
-lab=vpwr}
+lab=#net12}
 N 1400 -190 1590 -190 {
-lab=vpwr}
+lab=#net12}
 N 1590 -40 1610 -40 {
 lab=vdac4}
 N 1720 -40 1740 -40 {
@@ -214,11 +214,11 @@ lab=vdac4}
 N 1850 -40 1870 -40 {
 lab=vdac4}
 N 1380 -120 1400 -120 {
-lab=vpwr}
+lab=#net12}
 N 1380 -150 1380 -120 {
-lab=vpwr}
+lab=#net12}
 N 1380 -150 1400 -150 {
-lab=vpwr}
+lab=#net12}
 N 1610 -40 1610 -10 {
 lab=vdac4}
 N 1590 -10 1610 -10 {
@@ -242,23 +242,23 @@ lab=vdac4}
 N 1850 120 1850 150 {
 lab=GND}
 N 1550 -170 1680 -170 {
-lab=#net12}
+lab=#net13}
 N 1680 -170 1810 -170 {
-lab=#net12}
+lab=#net13}
 N 1850 -190 1980 -190 {
-lab=vpwr}
-N 1980 -190 1980 -150 {
-lab=vpwr}
-N 1980 -120 2000 -120 {
-lab=vpwr}
-N 2000 -150 2000 -120 {
-lab=vpwr}
-N 1980 -150 2000 -150 {
-lab=vpwr}
-N 1940 -170 1940 -120 {
 lab=#net12}
+N 1980 -190 1980 -150 {
+lab=#net12}
+N 1980 -120 2000 -120 {
+lab=#net12}
+N 2000 -150 2000 -120 {
+lab=#net12}
+N 1980 -150 2000 -150 {
+lab=#net12}
+N 1940 -170 1940 -120 {
+lab=#net13}
 N 1980 -90 1980 -70 {
-lab=#net16}
+lab=#net17}
 N 1980 -10 1980 10 {
 lab=vdac4}
 N 1980 -40 2000 -40 {
@@ -268,21 +268,21 @@ lab=vdac4}
 N 1980 -10 2000 -10 {
 lab=vdac4}
 N 1810 -170 1940 -170 {
-lab=#net12}
+lab=#net13}
 N 1980 -190 2110 -190 {
-lab=vpwr}
-N 2110 -190 2110 -150 {
-lab=vpwr}
-N 2110 -120 2130 -120 {
-lab=vpwr}
-N 2130 -150 2130 -120 {
-lab=vpwr}
-N 2110 -150 2130 -150 {
-lab=vpwr}
-N 2070 -170 2070 -120 {
 lab=#net12}
+N 2110 -190 2110 -150 {
+lab=#net12}
+N 2110 -120 2130 -120 {
+lab=#net12}
+N 2130 -150 2130 -120 {
+lab=#net12}
+N 2110 -150 2130 -150 {
+lab=#net12}
+N 2070 -170 2070 -120 {
+lab=#net13}
 N 2110 -90 2110 -70 {
-lab=#net17}
+lab=#net18}
 N 2110 -10 2110 10 {
 lab=vdac4}
 N 2110 -40 2130 -40 {
@@ -292,21 +292,21 @@ lab=vdac4}
 N 2110 -10 2130 -10 {
 lab=vdac4}
 N 1940 -170 2070 -170 {
-lab=#net12}
+lab=#net13}
 N 2110 -190 2240 -190 {
-lab=vpwr}
-N 2240 -190 2240 -150 {
-lab=vpwr}
-N 2240 -120 2260 -120 {
-lab=vpwr}
-N 2260 -150 2260 -120 {
-lab=vpwr}
-N 2240 -150 2260 -150 {
-lab=vpwr}
-N 2200 -170 2200 -120 {
 lab=#net12}
+N 2240 -190 2240 -150 {
+lab=#net12}
+N 2240 -120 2260 -120 {
+lab=#net12}
+N 2260 -150 2260 -120 {
+lab=#net12}
+N 2240 -150 2260 -150 {
+lab=#net12}
+N 2200 -170 2200 -120 {
+lab=#net13}
 N 2240 -90 2240 -70 {
-lab=#net18}
+lab=#net19}
 N 2240 -10 2240 10 {
 lab=vdac4}
 N 2240 -40 2260 -40 {
@@ -316,21 +316,21 @@ lab=vdac4}
 N 2240 -10 2260 -10 {
 lab=vdac4}
 N 2070 -170 2200 -170 {
-lab=#net12}
+lab=#net13}
 N 2240 -190 2370 -190 {
-lab=vpwr}
-N 2370 -190 2370 -150 {
-lab=vpwr}
-N 2370 -120 2390 -120 {
-lab=vpwr}
-N 2390 -150 2390 -120 {
-lab=vpwr}
-N 2370 -150 2390 -150 {
-lab=vpwr}
-N 2330 -170 2330 -120 {
 lab=#net12}
+N 2370 -190 2370 -150 {
+lab=#net12}
+N 2370 -120 2390 -120 {
+lab=#net12}
+N 2390 -150 2390 -120 {
+lab=#net12}
+N 2370 -150 2390 -150 {
+lab=#net12}
+N 2330 -170 2330 -120 {
+lab=#net13}
 N 2370 -90 2370 -70 {
-lab=#net19}
+lab=#net20}
 N 2370 -10 2370 10 {
 lab=vdac4}
 N 2370 -40 2390 -40 {
@@ -340,21 +340,21 @@ lab=vdac4}
 N 2370 -10 2390 -10 {
 lab=vdac4}
 N 2200 -170 2330 -170 {
-lab=#net12}
+lab=#net13}
 N 2370 -190 2500 -190 {
-lab=vpwr}
-N 2500 -190 2500 -150 {
-lab=vpwr}
-N 2500 -120 2520 -120 {
-lab=vpwr}
-N 2520 -150 2520 -120 {
-lab=vpwr}
-N 2500 -150 2520 -150 {
-lab=vpwr}
-N 2460 -170 2460 -120 {
 lab=#net12}
+N 2500 -190 2500 -150 {
+lab=#net12}
+N 2500 -120 2520 -120 {
+lab=#net12}
+N 2520 -150 2520 -120 {
+lab=#net12}
+N 2500 -150 2520 -150 {
+lab=#net12}
+N 2460 -170 2460 -120 {
+lab=#net13}
 N 2500 -90 2500 -70 {
-lab=#net20}
+lab=#net21}
 N 2500 -10 2500 10 {
 lab=vdac4}
 N 2500 -40 2520 -40 {
@@ -364,7 +364,7 @@ lab=vdac4}
 N 2500 -10 2520 -10 {
 lab=vdac4}
 N 2330 -170 2460 -170 {
-lab=#net12}
+lab=#net13}
 N 2000 10 2110 10 {
 lab=vdac4}
 N 2110 10 2240 10 {
@@ -373,6 +373,18 @@ N 2240 10 2370 10 {
 lab=vdac4}
 N 2370 10 2500 10 {
 lab=vdac4}
+N 1400 -90 1400 -70 {
+lab=#net13}
+N 1400 120 1420 120 {
+lab=GND}
+N 1420 120 1420 150 {
+lab=GND}
+N 1400 150 1420 150 {
+lab=GND}
+N 1400 -70 1400 90 {
+lab=#net13}
+N 1180 40 1400 40 {
+lab=#net13}
 C {sky130_fd_pr/corner.sym} 20 -190 0 0 {name=CORNER only_toplevel=true corner=tt}
 C {devices/launcher.sym} 90 -50 0 0 {name=h17 
 descr="Load waves" 
@@ -627,12 +639,12 @@ sa=0 sb=0 sd=0
 model=pfet_01v8
 spiceprefix=X
 }
-C {devices/lab_pin.sym} 1690 -240 0 0 {name=p21 sig_type=std_logic lab=vpwr}
+C {devices/lab_pin.sym} 1630 -240 0 0 {name=p21 sig_type=std_logic lab=vpwr}
 C {devices/lab_pin.sym} 1550 -40 1 0 {name=p22 sig_type=std_logic lab=v040n}
 C {devices/lab_pin.sym} 1680 -40 1 0 {name=p23 sig_type=std_logic lab=v080n}
 C {devices/lab_pin.sym} 1810 -40 1 0 {name=p24 sig_type=std_logic lab=v160n}
 C {sky130_fd_pr/pfet_01v8.sym} 1420 -120 0 1 {name=M7
-L=0.25
+L=0.5
 W=0.5
 nf=1
 mult=1
@@ -646,13 +658,13 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {devices/lab_pin.sym} 1960 10 1 1 {name=p26 sig_type=std_logic lab=vdac4}
-C {sky130_fd_pr/res_high_po_1p41.sym} 1400 0 0 0 {name=R5
+C {sky130_fd_pr/res_high_po_1p41.sym} 1190 180 0 0 {name=R5
 L=5
 model=res_high_po_1p41
 spiceprefix=X
 mult=1}
-C {devices/gnd.sym} 1400 30 0 1 {name=l31 lab=GND}
-C {devices/gnd.sym} 1380 0 1 1 {name=l32 lab=GND}
+C {devices/gnd.sym} 1190 210 0 1 {name=l31 lab=GND}
+C {devices/gnd.sym} 1170 180 1 1 {name=l32 lab=GND}
 C {devices/gnd.sym} 2000 -370 0 1 {name=l33 lab=GND}
 C {sky130_fd_pr/nfet_01v8.sym} 1570 -40 0 0 {name=M4
 L=2
@@ -669,7 +681,7 @@ model=nfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8.sym} 1700 -40 0 0 {name=M5
-L=1
+L=1.2
 W=0.5
 nf=1 
 mult=1
@@ -698,7 +710,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8.sym} 1830 90 0 0 {name=M8
 L=0.15
-W=1.5
+W=1
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -757,8 +769,8 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 2070 -40 1 0 {name=p20 sig_type=std_logic lab=v640n}
 C {sky130_fd_pr/nfet_01v8.sym} 2090 -40 0 0 {name=M12
-L=0.25
-W=1
+L=0.6
+W=0.4
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -771,8 +783,8 @@ model=nfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 2220 -120 0 0 {name=M13
-L=0.25
-W=1
+L=0.3
+W=1.35
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -787,7 +799,7 @@ spiceprefix=X
 C {devices/lab_pin.sym} 2200 -40 1 0 {name=p27 sig_type=std_logic lab=v1280n}
 C {sky130_fd_pr/nfet_01v8.sym} 2220 -40 0 0 {name=M14
 L=0.25
-W=2
+W=1
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -801,7 +813,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 2350 -120 0 0 {name=M15
 L=0.25
-W=2
+W=2.1
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -816,7 +828,7 @@ spiceprefix=X
 C {devices/lab_pin.sym} 2330 -40 1 0 {name=p29 sig_type=std_logic lab=v2560n}
 C {sky130_fd_pr/nfet_01v8.sym} 2350 -40 0 0 {name=M16
 L=0.25
-W=4
+W=2
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -830,7 +842,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 2480 -120 0 0 {name=M17
 L=0.25
-W=4
+W=4.3
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -845,7 +857,7 @@ spiceprefix=X
 C {devices/lab_pin.sym} 2460 -40 1 0 {name=p30 sig_type=std_logic lab=v5120n}
 C {sky130_fd_pr/nfet_01v8.sym} 2480 -40 0 0 {name=M18
 L=0.15
-W=8
+W=3
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -872,3 +884,25 @@ C {devices/gnd.sym} 540 -320 0 0 {name=l38 lab=GND}
 C {devices/vsource.sym} 540 -250 0 0 {name=V10 value="pulse 1.8v 0v 0n 1n 1n 2559n 5120n"  savecurrent=false}
 C {devices/lab_pin.sym} 540 -280 0 0 {name=p35 sig_type=std_logic lab=v5120n}
 C {devices/gnd.sym} 540 -220 0 0 {name=l39 lab=GND}
+C {sky130_fd_pr/nfet_01v8.sym} 1380 120 0 0 {name=M19
+L=0.15
+W=0.5
+nf=1
+mult=1
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=nfet_01v8
+spiceprefix=X
+}
+C {devices/gnd.sym} 1400 150 0 1 {name=l40 lab=GND}
+C {devices/lab_pin.sym} 1360 120 0 0 {name=p36 sig_type=std_logic lab=vpwr}
+C {devices/gnd.sym} 1660 -220 0 1 {name=l43 lab=GND}
+C {sky130_fd_pr/res_high_po_2p85.sym} 1660 -240 3 0 {name=R4
+L=4
+model=res_high_po_2p85
+spiceprefix=X
+mult=1}
