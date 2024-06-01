@@ -1,0 +1,114 @@
+** sch_path: /home/anton/projects/tt-vga-fun/xschem/b.sch
+**.subckt b
+V1 vramp GND pwl 0ns 0v, 20ns 0v, 100ns 1.8v, 200ns 1.8v
+V2 vpwr GND 1.8
+V3 v040n GND pulse 1.8v 0v 0n 1n 1n 19n 40n
+V4 v080n GND pulse 1.8v 0v 0n 1n 1n 39n 80n
+V5 v160n GND pulse 1.8v 0v 0n 1n 1n 79n 160n
+XR12 net1 net2 GND sky130_fd_pr__res_high_po_1p41 L=3.3 mult=1 m=1
+XR1 v040n net1 GND sky130_fd_pr__res_high_po_1p41 L=7.71 mult=1 m=1
+XR11 GND net1 GND sky130_fd_pr__res_high_po_1p41 L=3.3 mult=1 m=1
+XR2 v080n net2 GND sky130_fd_pr__res_high_po_1p41 L=7.71 mult=1 m=1
+XR13 net2 vdac1 GND sky130_fd_pr__res_high_po_1p41 L=3.3 mult=1 m=1
+XR3 v160n vdac1 GND sky130_fd_pr__res_high_po_1p41 L=7.71 mult=1 m=1
+XR112 net3 net4 GND sky130_fd_pr__res_high_po_1p41 L=3.3 mult=1 m=1
+XR101 net11 net3 GND sky130_fd_pr__res_high_po_1p41 L=7.71 mult=1 m=1
+XR111 GND net3 GND sky130_fd_pr__res_high_po_1p41 L=7.71 mult=1 m=1
+XR102 net10 net4 GND sky130_fd_pr__res_high_po_1p41 L=7.71 mult=1 m=1
+XR113 net4 vdac2 GND sky130_fd_pr__res_high_po_1p41 L=3.3 mult=1 m=1
+XR103 net9 vdac2 GND sky130_fd_pr__res_high_po_1p41 L=7.71 mult=1 m=1
+x6 net5 vdac2 GND tt06_analog_load
+R10 net5 GND 1e6 m=1
+XR212 net6 net7 GND sky130_fd_pr__res_high_po_1p41 L=3.3 mult=1 m=1
+XR201 v040n net6 GND sky130_fd_pr__res_high_po_1p41 L=7.71 mult=1 m=1
+XR211 GND net6 GND sky130_fd_pr__res_high_po_1p41 L=7.71 mult=1 m=1
+XR202 v080n net7 GND sky130_fd_pr__res_high_po_1p41 L=7.71 mult=1 m=1
+XR213 net7 vdac3 GND sky130_fd_pr__res_high_po_1p41 L=3.3 mult=1 m=1
+XR203 v160n vdac3 GND sky130_fd_pr__res_high_po_1p41 L=7.71 mult=1 m=1
+x4 net8 vdac1 GND tt06_analog_load
+R20 net8 GND 1e6 m=1
+x1 net9 v160n dlim
+x2 net10 v080n dlim
+x3 net11 v040n dlim
+XM1 vpwr v160n vdac4 GND sky130_fd_pr__nfet_01v8 L=0.15 W=0.74 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM2 vpwr v080n vdac4 GND sky130_fd_pr__nfet_01v8 L=0.25 W=0.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM3 vpwr v040n vdac4 GND sky130_fd_pr__nfet_01v8 L=0.5 W=0.4 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XR5 GND net12 GND sky130_fd_pr__res_high_po_1p41 L=13.3 mult=1 m=1
+XM4 net15 vpwr GND GND sky130_fd_pr__nfet_01v8 L=0.5 W=2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XR4 net13 GND GND sky130_fd_pr__res_high_po_1p41 L=3.3 mult=1 m=1
+XR6 net14 net13 GND sky130_fd_pr__res_high_po_1p41 L=13.3 mult=1 m=1
+XM6 vdac4 vpwr GND GND sky130_fd_pr__nfet_01v8 L=0.5 W=0.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+R7 vpwr vpull 0 m=1
+x5 net16 net17 GND tt06_analog_load
+R8 net16 GND 1e6 m=1
+**** begin user architecture code
+
+.param mc_mm_switch=0
+.param mc_pr_switch=0
+.include /home/anton/.volare/sky130A/libs.tech/ngspice/corners/tt.spice
+.include /home/anton/.volare/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical.spice
+.include /home/anton/.volare/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical__lin.spice
+.include /home/anton/.volare/sky130A/libs.tech/ngspice/corners/tt/specialized_cells.spice
+
+
+
+
+
+.options savecurrents
+
+.control
+  save all
+  tran 0.1n 200n
+  write b.raw
+*  plot
+*  + i(vsteer)
+*  plot
+*  + vdac1 vdac2 vdac3
+  plot vdac4
+*  plot vpull
+*  + vramp
+*  + v040n
+*  + v080n+2
+*  + v160n+4
+*  + (v160n/2.0+v080n/4.0+v040n/8.0)
+.endc
+
+
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  tt06_analog_load.sym # of pins=3
+** sym_path: /home/anton/projects/tt-vga-fun/xschem/tt06_analog_load.sym
+** sch_path: /home/anton/projects/tt-vga-fun/xschem/tt06_analog_load.sch
+.subckt tt06_analog_load a_ext a_int GND
+*.iopin a_int
+*.iopin a_ext
+*.iopin GND
+R1 a_ext a_int 500 m=1
+C1 a_int GND 2.5p m=1
+C2 a_ext GND 2.5p m=1
+.ends
+
+
+* expanding   symbol:  dlim.sym # of pins=2
+** sym_path: /home/anton/projects/tt-vga-fun/xschem/dlim.sym
+** sch_path: /home/anton/projects/tt-vga-fun/xschem/dlim.sch
+.subckt dlim lim src
+*.ipin src
+*.opin lim
+XM4 GND src lim GND sky130_fd_pr__nfet_01v8 L=0.2 W=0.4 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+V1 vcc GND 1.8
+XM1 lim src vcc vcc sky130_fd_pr__pfet_01v8 L=0.2 W=0.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+.GLOBAL GND
+.end
