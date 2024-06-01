@@ -245,36 +245,29 @@ N 600 -590 600 -550 {
 lab=vcc}
 N 600 -490 600 -440 {
 lab=#net1}
-N 1230 -140 1280 -140 { lab=#net11}
 N 1340 -140 1370 -140 { lab=vdac}
 N 1380 -240 1530 -240 {
 lab=vdac}
-N 1100 -140 1170 -140 {
-lab=vss}
 N 1370 -140 1380 -140 {
 lab=vdac}
 N 280 -130 280 -80 {
 lab=vss}
 N 280 -100 730 -100 {
 lab=vss}
-N 730 -100 1100 -100 {
-lab=vss}
-N 1100 -140 1100 -100 {
-lab=vss}
-N 1100 -100 1200 -100 {
-lab=vss}
-N 1200 -140 1200 -100 {
-lab=vss}
 N 1380 -240 1380 -140 {
 lab=vdac}
 N 550 -520 580 -520 {
 lab=vss}
-N 1200 -210 1200 -180 {
-lab=vcc}
 N 660 -160 690 -160 {
 lab=vcc}
 N 210 -160 240 -160 {
 lab=vcc}
+N 870 -140 1280 -140 {
+lab=vss}
+N 870 -140 870 -100 {
+lab=vss}
+N 730 -100 870 -100 {
+lab=vss}
 C {sky130_fd_pr/pfet_01v8.sym} 710 -370 0 0 {name=M1
 L=1
 W=0.5
@@ -336,8 +329,8 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 1530 -240 0 1 {name=p26 sig_type=std_logic lab=vdac}
 C {sky130_fd_pr/nfet_01v8.sym} 450 -290 0 0 {name=M4
-L=2
-W=0.5
+L=0.15
+W=1
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -556,23 +549,11 @@ L=10
 model=res_high_po_5p73
 spiceprefix=X
 mult=1}
-C {sky130_fd_pr/nfet_01v8.sym} 1200 -160 1 0 {name=M20
-L=0.6
-W=10
-ad="'W * 0.29'" pd="'2 * (W + 0.29)'"
-as="'W * 0.29'" ps="'2 * (W + 0.29)'"
-nrd="'0.29 / W'" nrs="'0.29 / W'"
-sa=0 sb=0 sd=0
-nf=1 mult=1
-model=nfet_01v8
-spiceprefix=X
-}
 C {sky130_fd_pr/cap_mim_m3_1.sym} 1310 -140 3 0 {name=C1 model=cap_mim_m3_1 W=28 L=20 MF=1 spiceprefix=X}
 C {devices/lab_pin.sym} 550 -520 0 0 {name=p2 sig_type=std_logic lab=vss}
 C {devices/lab_pin.sym} 210 -160 0 0 {name=p3 sig_type=std_logic lab=vcc}
 C {devices/lab_pin.sym} 280 -80 0 0 {name=p4 sig_type=std_logic lab=vss}
 C {devices/lab_pin.sym} 660 -160 0 0 {name=p5 sig_type=std_logic lab=vcc}
-C {devices/lab_pin.sym} 1200 -210 0 0 {name=p1 sig_type=std_logic lab=vcc}
 C {devices/ipin.sym} 100 -300 0 0 {name=p6 lab=d0}
 C {devices/opin.sym} 90 -120 0 0 {name=p7 lab=vdac}
 C {devices/iopin.sym} 90 -380 2 0 {name=p8 lab=vcc}
