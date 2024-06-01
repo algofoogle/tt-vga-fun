@@ -5,6 +5,12 @@ K {}
 V {}
 S {}
 E {}
+T {C1 is too large
+for layout, but
+connecting it to
+GND can make
+imbalance in the
+transistors clearer} 980 -90 0 0 0.4 0.4 {}
 N 470 -440 470 -400 {
 lab=#net1}
 N 470 -440 600 -440 {
@@ -245,29 +251,26 @@ N 600 -590 600 -550 {
 lab=vcc}
 N 600 -490 600 -440 {
 lab=#net1}
-N 1340 -140 1370 -140 { lab=vdac}
 N 1380 -240 1530 -240 {
-lab=vdac}
-N 1370 -140 1380 -140 {
 lab=vdac}
 N 280 -130 280 -80 {
 lab=vss}
 N 280 -100 730 -100 {
 lab=vss}
-N 1380 -240 1380 -140 {
-lab=vdac}
 N 550 -520 580 -520 {
 lab=vss}
 N 660 -160 690 -160 {
 lab=vcc}
 N 210 -160 240 -160 {
 lab=vcc}
-N 870 -140 1280 -140 {
-lab=vss}
-N 870 -140 870 -100 {
-lab=vss}
 N 730 -100 870 -100 {
 lab=vss}
+N 980 -100 1280 -100 {
+lab=#net11}
+N 1380 -240 1380 -100 {
+lab=vdac}
+N 1340 -100 1380 -100 {
+lab=vdac}
 C {sky130_fd_pr/pfet_01v8.sym} 710 -370 0 0 {name=M1
 L=1
 W=0.5
@@ -330,7 +333,7 @@ spiceprefix=X
 C {devices/lab_pin.sym} 1530 -240 0 1 {name=p26 sig_type=std_logic lab=vdac}
 C {sky130_fd_pr/nfet_01v8.sym} 450 -290 0 0 {name=M4
 L=0.15
-W=1
+W=0.5
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -549,7 +552,7 @@ L=10
 model=res_high_po_5p73
 spiceprefix=X
 mult=1}
-C {sky130_fd_pr/cap_mim_m3_1.sym} 1310 -140 3 0 {name=C1 model=cap_mim_m3_1 W=28 L=20 MF=1 spiceprefix=X}
+C {sky130_fd_pr/cap_mim_m3_1.sym} 1310 -100 3 0 {name=C1 model=cap_mim_m3_1 W=28 L=20 MF=10 spiceprefix=X}
 C {devices/lab_pin.sym} 550 -520 0 0 {name=p2 sig_type=std_logic lab=vss}
 C {devices/lab_pin.sym} 210 -160 0 0 {name=p3 sig_type=std_logic lab=vcc}
 C {devices/lab_pin.sym} 280 -80 0 0 {name=p4 sig_type=std_logic lab=vss}
