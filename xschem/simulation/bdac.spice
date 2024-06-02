@@ -1,0 +1,25 @@
+** sch_path: /home/anton/projects/tt-vga-fun/xschem/bdac.sch
+.subckt bdac vcc vss d0 d1 d2 d3 d4 d5 d6 d7 vdac
+*.PININFO d0:I vdac:O vcc:B d1:I d2:I d3:I d4:I d5:I d6:I d7:I vss:B
+XM2p net5 net2 net1 net1 sky130_fd_pr__pfet_01v8 L=1 W=0.5 nf=1 m=1
+XM1p net4 net2 net1 net1 sky130_fd_pr__pfet_01v8 L=2 W=0.5 nf=1 m=1
+XM0p net3 net2 net1 net1 sky130_fd_pr__pfet_01v8 L=4 W=0.5 nf=1 m=1
+XMmirror net2 net2 net1 net1 sky130_fd_pr__pfet_01v8 L=0.5 W=0.5 nf=1 m=1
+XM0n net3 d0 vdac vdac sky130_fd_pr__nfet_01v8 L=0.15 W=0.5 nf=1 m=1
+XM1n net4 d1 vdac vdac sky130_fd_pr__nfet_01v8 L=1.2 W=0.5 nf=1 m=1
+XM2n net5 d2 vdac vdac sky130_fd_pr__nfet_01v8 L=0.5 W=0.5 nf=1 m=1
+XMcon vdac vcc vss vss sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 m=1
+XM3p net6 net2 net1 net1 sky130_fd_pr__pfet_01v8 L=0.5 W=0.5 nf=1 m=1
+XM3n net6 d3 vdac vdac sky130_fd_pr__nfet_01v8 L=0.25 W=0.5 nf=1 m=1
+XM4p net7 net2 net1 net1 sky130_fd_pr__pfet_01v8 L=0.25 W=0.5 nf=1 m=1
+XM4n net7 d4 vdac vdac sky130_fd_pr__nfet_01v8 L=0.6 W=0.4 nf=1 m=1
+XM5p net8 net2 net1 net1 sky130_fd_pr__pfet_01v8 L=0.3 W=1.35 nf=1 m=1
+XM5n net8 d5 vdac vdac sky130_fd_pr__nfet_01v8 L=0.25 W=1 nf=1 m=1
+XM6p net9 net2 net1 net1 sky130_fd_pr__pfet_01v8 L=0.25 W=2.1 nf=1 m=1
+XM6n net9 d6 vdac vdac sky130_fd_pr__nfet_01v8 L=0.25 W=2 nf=1 m=1
+XM7p net10 net2 net1 net1 sky130_fd_pr__pfet_01v8 L=0.25 W=4.3 nf=1 m=1
+XM7n net10 d7 vdac vdac sky130_fd_pr__nfet_01v8 L=0.15 W=3 nf=1 m=1
+XMprog net2 vcc vss vss sky130_fd_pr__nfet_01v8 L=0.15 W=0.5 nf=1 m=1
+XRbal net1 vcc vss sky130_fd_pr__res_high_po_5p73 L=10 mult=1 m=1
+.ends
+.end
