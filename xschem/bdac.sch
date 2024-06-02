@@ -5,12 +5,6 @@ K {}
 V {}
 S {}
 E {}
-T {C1 is too large
-for layout, but
-connecting it to
-GND can make
-imbalance in the
-transistors clearer} 980 -90 0 0 0.4 0.4 {}
 N 470 -440 470 -400 {
 lab=#net1}
 N 470 -440 600 -440 {
@@ -263,15 +257,7 @@ N 660 -160 690 -160 {
 lab=vcc}
 N 210 -160 240 -160 {
 lab=vcc}
-N 730 -100 870 -100 {
-lab=vss}
-N 980 -100 1280 -100 {
-lab=#net11}
-N 1380 -240 1380 -100 {
-lab=vdac}
-N 1340 -100 1380 -100 {
-lab=vdac}
-C {sky130_fd_pr/pfet_01v8.sym} 710 -370 0 0 {name=M1
+C {sky130_fd_pr/pfet_01v8.sym} 710 -370 0 0 {name=M2p
 L=1
 W=0.5
 nf=1
@@ -285,7 +271,7 @@ sa=0 sb=0 sd=0
 model=pfet_01v8
 spiceprefix=X
 }
-C {sky130_fd_pr/pfet_01v8.sym} 580 -370 0 0 {name=M2
+C {sky130_fd_pr/pfet_01v8.sym} 580 -370 0 0 {name=M1p
 L=2
 W=0.5
 nf=1
@@ -299,7 +285,7 @@ sa=0 sb=0 sd=0
 model=pfet_01v8
 spiceprefix=X
 }
-C {sky130_fd_pr/pfet_01v8.sym} 450 -370 0 0 {name=M3
+C {sky130_fd_pr/pfet_01v8.sym} 450 -370 0 0 {name=M0p
 L=4
 W=0.5
 nf=1
@@ -316,7 +302,7 @@ spiceprefix=X
 C {devices/lab_pin.sym} 430 -290 3 0 {name=p22 sig_type=std_logic lab=d0}
 C {devices/lab_pin.sym} 560 -290 3 0 {name=p23 sig_type=std_logic lab=d1}
 C {devices/lab_pin.sym} 690 -290 3 0 {name=p24 sig_type=std_logic lab=d2}
-C {sky130_fd_pr/pfet_01v8.sym} 300 -370 0 1 {name=M7
+C {sky130_fd_pr/pfet_01v8.sym} 300 -370 0 1 {name=Mmirror
 L=0.5
 W=0.5
 nf=1
@@ -331,7 +317,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {devices/lab_pin.sym} 1530 -240 0 1 {name=p26 sig_type=std_logic lab=vdac}
-C {sky130_fd_pr/nfet_01v8.sym} 450 -290 0 0 {name=M4
+C {sky130_fd_pr/nfet_01v8.sym} 450 -290 0 0 {name=M0n
 L=0.15
 W=0.5
 nf=1 
@@ -345,7 +331,7 @@ sa=0 sb=0 sd=0
 model=nfet_01v8
 spiceprefix=X
 }
-C {sky130_fd_pr/nfet_01v8.sym} 580 -290 0 0 {name=M5
+C {sky130_fd_pr/nfet_01v8.sym} 580 -290 0 0 {name=M1n
 L=1.2
 W=0.5
 nf=1 
@@ -359,7 +345,7 @@ sa=0 sb=0 sd=0
 model=nfet_01v8
 spiceprefix=X
 }
-C {sky130_fd_pr/nfet_01v8.sym} 710 -290 0 0 {name=M6
+C {sky130_fd_pr/nfet_01v8.sym} 710 -290 0 0 {name=M2n
 L=0.5
 W=0.5
 nf=1 
@@ -373,7 +359,7 @@ sa=0 sb=0 sd=0
 model=nfet_01v8
 spiceprefix=X
 }
-C {sky130_fd_pr/nfet_01v8.sym} 710 -160 0 0 {name=M8
+C {sky130_fd_pr/nfet_01v8.sym} 710 -160 0 0 {name=Mcon
 L=0.15
 W=1
 nf=1
@@ -387,7 +373,7 @@ sa=0 sb=0 sd=0
 model=nfet_01v8
 spiceprefix=X
 }
-C {sky130_fd_pr/pfet_01v8.sym} 840 -370 0 0 {name=M9
+C {sky130_fd_pr/pfet_01v8.sym} 840 -370 0 0 {name=M3p
 L=0.5
 W=0.5
 nf=1
@@ -402,7 +388,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {devices/lab_pin.sym} 820 -290 3 0 {name=p19 sig_type=std_logic lab=d3}
-C {sky130_fd_pr/nfet_01v8.sym} 840 -290 0 0 {name=M10
+C {sky130_fd_pr/nfet_01v8.sym} 840 -290 0 0 {name=M3n
 L=0.25
 W=0.5
 nf=1 
@@ -416,7 +402,7 @@ sa=0 sb=0 sd=0
 model=nfet_01v8
 spiceprefix=X
 }
-C {sky130_fd_pr/pfet_01v8.sym} 970 -370 0 0 {name=M11
+C {sky130_fd_pr/pfet_01v8.sym} 970 -370 0 0 {name=M4p
 L=0.25
 W=0.5
 nf=1
@@ -431,7 +417,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {devices/lab_pin.sym} 950 -290 3 0 {name=p20 sig_type=std_logic lab=d4}
-C {sky130_fd_pr/nfet_01v8.sym} 970 -290 0 0 {name=M12
+C {sky130_fd_pr/nfet_01v8.sym} 970 -290 0 0 {name=M4n
 L=0.6
 W=0.4
 nf=1 
@@ -445,7 +431,7 @@ sa=0 sb=0 sd=0
 model=nfet_01v8
 spiceprefix=X
 }
-C {sky130_fd_pr/pfet_01v8.sym} 1100 -370 0 0 {name=M13
+C {sky130_fd_pr/pfet_01v8.sym} 1100 -370 0 0 {name=M5p
 L=0.3
 W=1.35
 nf=1
@@ -460,7 +446,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {devices/lab_pin.sym} 1080 -290 3 0 {name=p27 sig_type=std_logic lab=d5}
-C {sky130_fd_pr/nfet_01v8.sym} 1100 -290 0 0 {name=M14
+C {sky130_fd_pr/nfet_01v8.sym} 1100 -290 0 0 {name=M5n
 L=0.25
 W=1
 nf=1 
@@ -474,7 +460,7 @@ sa=0 sb=0 sd=0
 model=nfet_01v8
 spiceprefix=X
 }
-C {sky130_fd_pr/pfet_01v8.sym} 1230 -370 0 0 {name=M15
+C {sky130_fd_pr/pfet_01v8.sym} 1230 -370 0 0 {name=M6p
 L=0.25
 W=2.1
 nf=1
@@ -489,7 +475,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {devices/lab_pin.sym} 1210 -290 3 0 {name=p29 sig_type=std_logic lab=d6}
-C {sky130_fd_pr/nfet_01v8.sym} 1230 -290 0 0 {name=M16
+C {sky130_fd_pr/nfet_01v8.sym} 1230 -290 0 0 {name=M6n
 L=0.25
 W=2
 nf=1 
@@ -503,7 +489,7 @@ sa=0 sb=0 sd=0
 model=nfet_01v8
 spiceprefix=X
 }
-C {sky130_fd_pr/pfet_01v8.sym} 1360 -370 0 0 {name=M17
+C {sky130_fd_pr/pfet_01v8.sym} 1360 -370 0 0 {name=M7p
 L=0.25
 W=4.3
 nf=1
@@ -518,7 +504,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {devices/lab_pin.sym} 1340 -290 3 0 {name=p30 sig_type=std_logic lab=d7}
-C {sky130_fd_pr/nfet_01v8.sym} 1360 -290 0 0 {name=M18
+C {sky130_fd_pr/nfet_01v8.sym} 1360 -290 0 0 {name=M7n
 L=0.15
 W=3
 nf=1
@@ -532,7 +518,7 @@ sa=0 sb=0 sd=0
 model=nfet_01v8
 spiceprefix=X
 }
-C {sky130_fd_pr/nfet_01v8.sym} 260 -160 0 0 {name=M19
+C {sky130_fd_pr/nfet_01v8.sym} 260 -160 0 0 {name=Mprog
 L=0.15
 W=0.5
 nf=1
@@ -547,12 +533,11 @@ model=nfet_01v8
 spiceprefix=X
 }
 C {devices/lab_pin.sym} 600 -590 0 0 {name=p37 sig_type=std_logic lab=vcc}
-C {sky130_fd_pr/res_high_po_5p73.sym} 600 -520 0 0 {name=R5
+C {sky130_fd_pr/res_high_po_5p73.sym} 600 -520 0 0 {name=Rbal
 L=10
 model=res_high_po_5p73
 spiceprefix=X
 mult=1}
-C {sky130_fd_pr/cap_mim_m3_1.sym} 1310 -100 3 0 {name=C1 model=cap_mim_m3_1 W=28 L=20 MF=10 spiceprefix=X}
 C {devices/lab_pin.sym} 550 -520 0 0 {name=p2 sig_type=std_logic lab=vss}
 C {devices/lab_pin.sym} 210 -160 0 0 {name=p3 sig_type=std_logic lab=vcc}
 C {devices/lab_pin.sym} 280 -80 0 0 {name=p4 sig_type=std_logic lab=vss}
