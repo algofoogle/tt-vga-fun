@@ -1,0 +1,51 @@
+** sch_path: /home/anton/projects/tt-vga-fun/xschem/02-nfet-sweep2.sch
+**.subckt 02-nfet-sweep2
+XM1 vcc G net1 net1 sky130_fd_pr__nfet_01v8 L={GL} W={GW} nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+V1 vcc GND 1.8
+Vg G GND 0
+Vsi net1 GND 0
+**** begin user architecture code
+
+
+
+.DC Vg 0 1.8 0.01
+
+.param GW     = 0.5
+.param GL     = 0.15
+
+.options savecurrents
+.control
+
+  let gwstart = 0.5
+  let gwstep  = 0.05
+  let gwi     = gwstart
+
+  repeat 10
+    set gwvar=$&gwi
+    echo Gate width = $gwvar
+    alterparam GW = $gwvar
+    save all
+    run
+    write 02.raw G i(vsi)
+    set appendwrite
+    reset
+    let gwi = gwi + gwstep
+  end
+
+.endc
+
+
+
+
+.param mc_mm_switch=0
+.param mc_pr_switch=0
+.include /home/anton/.volare/sky130A/libs.tech/ngspice/corners/tt.spice
+.include /home/anton/.volare/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical.spice
+.include /home/anton/.volare/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical__lin.spice
+.include /home/anton/.volare/sky130A/libs.tech/ngspice/corners/tt/specialized_cells.spice
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end

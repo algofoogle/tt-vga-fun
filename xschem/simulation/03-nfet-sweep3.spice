@@ -1,0 +1,60 @@
+** sch_path: /home/anton/projects/tt-vga-fun/xschem/03-nfet-sweep3.sch
+**.subckt 03-nfet-sweep3
+XM1 vcc G net1 net1 sky130_fd_pr__nfet_01v8 L=0.15 W={GW} nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+V1 vcc GND 1.8
+Vg G GND 0
+Vs0p15 net1 GND 0
+XM2 vcc G net2 net2 sky130_fd_pr__nfet_01v8 L=0.25 W={GW} nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+Vs0p25 net2 GND 0
+XM3 vcc G net3 net3 sky130_fd_pr__nfet_01v8 L=0.35 W={GW} nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+Vs0p35 net3 GND 0
+XM4 vcc G net4 net4 sky130_fd_pr__nfet_01v8 L=0.5 W={GW} nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+Vs0p50 net4 GND 0
+**** begin user architecture code
+
+
+
+.DC Vg 0 1.8 0.01
+
+.param GW     = 0.5
+.param GL     = 0.15
+
+.options savecurrents
+.control
+
+  let gwstart = 0.5
+  let gwstep  = 0.05
+  let gwi     = gwstart
+
+  repeat 10
+    set gwvar=$&gwi
+    echo Gate width = $gwvar
+    alterparam GW = $gwvar
+    save all
+    run
+    write 03.raw G i(Vs0p15) i(Vs0p25) i(Vs0p35) i(Vs0p50)
+    set appendwrite
+    reset
+    let gwi = gwi + gwstep
+  end
+
+.endc
+
+
+
+
+.param mc_mm_switch=0
+.param mc_pr_switch=0
+.include /home/anton/.volare/sky130A/libs.tech/ngspice/corners/tt.spice
+.include /home/anton/.volare/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical.spice
+.include /home/anton/.volare/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical__lin.spice
+.include /home/anton/.volare/sky130A/libs.tech/ngspice/corners/tt/specialized_cells.spice
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end

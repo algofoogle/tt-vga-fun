@@ -35,6 +35,29 @@ rainbow=1
 
 color=7
 node=i(@b.x7.xrbal.brend[i])}
+B 2 1390 280 2190 680 {flags=graph
+y1=1.9e-05
+y2=0.46
+ypos1=0
+ypos2=2
+divy=5
+subdivy=1
+unity=1
+x1=0
+x2=1.28e-05
+divx=5
+subdivx=1
+xlabmag=1.0
+ylabmag=1.0
+node="vdac4
+vdac4pin
+in;v5120n,v2560n,v1280n,v640n,v320n,v160n,v080n,v040n,v020n"
+color="4 5 12"
+dataset=-1
+unitx=1
+logx=0
+logy=0
+digital=0}
 T {NOTE: These are DUTY CYCLES (pixel durations), not periods.} 10 -30 0 0 0.4 0.4 {}
 N 1700 70 1740 70 {
 lab=vdac4pin}
@@ -64,32 +87,26 @@ C {devices/simulator_commands_shown.sym} 680 -570 0 0 {name=COMMANDS2
 simulator=ngspice
 only_toplevel=false 
 value="
+.func d0() \{0.02*(v040n+2.0)\}
+.func d1() \{(v080n+4)/50\}
+.func d2() \{(v160n+6)/50\}
+.func d3() \{(v320n+8)/50\}
+.func d4() \{(v640n+10)/50\}
+.func d5() \{(v1280n+12)/50\}
+.func d6() \{(v2560n+14)/50\}
+.func d7() \{(v5120n+16)/50\}
+.func ideal() \{'1*(0.430/1.800)*(v5120n/2.0 + v2560n/4.0 + v1280n/8.0 + v640n/16.0 + v320n/32.0 + v160n/64.0 + v080n/128.0 + v040n/256.0)'\}
+*NOTE: 0.430/1.800 above scales the "perfect" output line to be closer to the scale of actual output.
 .options savecurrents
-
 .control
   save all
   tran 1n 12.8u
   write b.raw
 
   plot 
-  + vdac4 vdac4pin
-  + '1*(0.430/1.800)*(v5120n/2.0 + v2560n/4.0 + v1280n/8.0 + v640n/16.0 + v320n/32.0 + v160n/64.0 + v080n/128.0 + v040n/256.0)'
-  + '0.02*(v040n+2.0)'
-  + '(v080n+4)/50'
-  + '(v160n+6)/50'
-  + '(v320n+8)/50'
-  + '(v640n+10)/50'
-  + '(v1280n+12)/50'
-  + '(v2560n+14)/50'
-  + '(v5120n+16)/50'
-*NOTE: 0.430/1.800 above scales the "perfect" output line to be closer to the scale of actual output.
-*  + '(v5120n/2.0 + v2560n/4.0 + v1280n/8.0 + v640n/16.0 + v320n/32.0 + v160n/64.0 + v080n/128.0 + v040n/256.0)'
+  + ideal() v(vdac4) v(vdac4pin)
+  + d0() d1() d2() d3() d4() d5() d6() d7()
 
-*  plot vpull
-*  + vramp
-*  + v040n
-*  + v080n+2
-*  + v160n+4
 .endc
 "}
 C {devices/vsource.sym} 60 -490 0 0 {name=V3 value="pulse 1.8v 0v 0n 1n 1n 19n 40n"  savecurrent=false}
