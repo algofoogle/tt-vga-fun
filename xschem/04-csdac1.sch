@@ -6,15 +6,15 @@ V {}
 S {}
 E {}
 B 2 1240 -980 2470 -160 {flags=graph
-y1=1.3584772e-06
-y2=2.0617886e-06
+y1=1.8e-12
+y2=0.00026
 ypos1=0
 ypos2=2
 divy=20
 
 unity=1
-x1=1.7524236
-x2=2.2242828
+x1=0.18
+x2=1.98
 divx=20
 
 xlabmag=1.0
@@ -256,7 +256,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 100 -690 0 1 {name=Mmirror
 L=0.15
-W=11.6
+W=11.5
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -272,7 +272,7 @@ C {devices/lab_pin.sym} 80 -800 0 0 {name=p2 sig_type=std_logic lab=vcc}
 C {devices/gnd.sym} 80 -480 0 0 {name=l1 lab=GND}
 C {sky130_fd_pr/pfet_01v8.sym} 200 -690 0 0 {name=M1
 L=0.15
-W=8
+W=8.5
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -289,7 +289,7 @@ C {devices/gnd.sym} 220 -540 0 0 {name=l4 lab=GND}
 C {devices/lab_pin.sym} 40 -570 0 0 {name=p3 sig_type=std_logic lab=G}
 C {sky130_fd_pr/pfet_01v8.sym} 320 -690 0 0 {name=M2
 L=0.15
-W=4.15
+W=4.44
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -305,7 +305,7 @@ C {devices/vsource.sym} 340 -570 0 0 {name=Vs2 value=0 savecurrent=false}
 C {devices/gnd.sym} 340 -540 0 0 {name=l5 lab=GND}
 C {sky130_fd_pr/pfet_01v8.sym} 440 -690 0 0 {name=M3
 L=0.15
-W=2.08
+W=2.19
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -321,7 +321,7 @@ C {devices/vsource.sym} 460 -570 0 0 {name=Vs3 value=0 savecurrent=false}
 C {devices/gnd.sym} 460 -540 0 0 {name=l6 lab=GND}
 C {sky130_fd_pr/pfet_01v8.sym} 560 -690 0 0 {name=M4
 L=0.15
-W=0.85
+W=0.99
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -336,8 +336,8 @@ spiceprefix=X
 C {devices/vsource.sym} 580 -570 0 0 {name=Vs4 value=0 savecurrent=false}
 C {devices/gnd.sym} 580 -540 0 0 {name=l7 lab=GND}
 C {sky130_fd_pr/pfet_01v8.sym} 680 -690 0 0 {name=M5
-L=0.15
-W=0.55
+L=0.2
+W=2.4
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -353,7 +353,7 @@ C {devices/vsource.sym} 700 -570 0 0 {name=Vs5 value=0 savecurrent=false}
 C {devices/gnd.sym} 700 -540 0 0 {name=l8 lab=GND}
 C {sky130_fd_pr/pfet_01v8.sym} 800 -690 0 0 {name=M6
 L=0.25
-W=2.5
+W=2.65
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -369,7 +369,7 @@ C {devices/vsource.sym} 820 -570 0 0 {name=Vs6 value=0 savecurrent=false}
 C {devices/gnd.sym} 820 -540 0 0 {name=l9 lab=GND}
 C {sky130_fd_pr/pfet_01v8.sym} 920 -690 0 0 {name=M7
 L=0.3
-W=2.3
+W=2.45
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -385,7 +385,7 @@ C {devices/vsource.sym} 940 -570 0 0 {name=Vs7 value=0 savecurrent=false}
 C {devices/gnd.sym} 940 -540 0 0 {name=l10 lab=GND}
 C {sky130_fd_pr/pfet_01v8.sym} 1040 -690 0 0 {name=M8
 L=0.4
-W=2.65
+W=2.8
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
