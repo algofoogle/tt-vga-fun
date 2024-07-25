@@ -6,8 +6,8 @@ V {}
 S {}
 E {}
 B 2 1240 -980 2470 -160 {flags=graph
-y1=1.4e-07
-y2=0.00025
+y1=1.3584772e-06
+y2=2.0617886e-06
 ypos1=0
 ypos2=2
 divy=20
@@ -305,7 +305,7 @@ C {devices/vsource.sym} 340 -570 0 0 {name=Vs2 value=0 savecurrent=false}
 C {devices/gnd.sym} 340 -540 0 0 {name=l5 lab=GND}
 C {sky130_fd_pr/pfet_01v8.sym} 440 -690 0 0 {name=M3
 L=0.15
-W=2.1
+W=2.08
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -321,7 +321,7 @@ C {devices/vsource.sym} 460 -570 0 0 {name=Vs3 value=0 savecurrent=false}
 C {devices/gnd.sym} 460 -540 0 0 {name=l6 lab=GND}
 C {sky130_fd_pr/pfet_01v8.sym} 560 -690 0 0 {name=M4
 L=0.15
-W=0.9
+W=0.85
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -337,7 +337,7 @@ C {devices/vsource.sym} 580 -570 0 0 {name=Vs4 value=0 savecurrent=false}
 C {devices/gnd.sym} 580 -540 0 0 {name=l7 lab=GND}
 C {sky130_fd_pr/pfet_01v8.sym} 680 -690 0 0 {name=M5
 L=0.15
-W=0.5
+W=0.55
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -352,8 +352,8 @@ spiceprefix=X
 C {devices/vsource.sym} 700 -570 0 0 {name=Vs5 value=0 savecurrent=false}
 C {devices/gnd.sym} 700 -540 0 0 {name=l8 lab=GND}
 C {sky130_fd_pr/pfet_01v8.sym} 800 -690 0 0 {name=M6
-L=0.3
-W=0.5
+L=0.25
+W=2.5
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -368,8 +368,8 @@ spiceprefix=X
 C {devices/vsource.sym} 820 -570 0 0 {name=Vs6 value=0 savecurrent=false}
 C {devices/gnd.sym} 820 -540 0 0 {name=l9 lab=GND}
 C {sky130_fd_pr/pfet_01v8.sym} 920 -690 0 0 {name=M7
-L=0.6
-W=0.5
+L=0.3
+W=2.3
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -384,8 +384,8 @@ spiceprefix=X
 C {devices/vsource.sym} 940 -570 0 0 {name=Vs7 value=0 savecurrent=false}
 C {devices/gnd.sym} 940 -540 0 0 {name=l10 lab=GND}
 C {sky130_fd_pr/pfet_01v8.sym} 1040 -690 0 0 {name=M8
-L=1.2
-W=0.5
+L=0.4
+W=2.65
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
