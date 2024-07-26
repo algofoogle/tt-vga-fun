@@ -6,8 +6,8 @@ V {}
 S {}
 E {}
 B 2 1080 -980 2310 -160 {flags=graph
-y1=-4.8e-05
-y2=0.00053
+y1=-0.13
+y2=1.3
 ypos1=0
 ypos2=2
 divy=20
@@ -35,8 +35,9 @@ dataset=-1
 subdivy=4
 subdivx=1
 
+
 color=4
-node=i(vs1)}
+node=dacout}
 T {NOTE: These are DUTY CYCLES (pixel durations), not periods.} 370 -60 0 0 0.4 0.4 {}
 N 80 -800 80 -720 {
 lab=vcc}
@@ -177,99 +178,109 @@ lab=#net1}
 N 660 -740 780 -740 {
 lab=#net1}
 N 220 -570 230 -570 {
-lab=#net2}
+lab=dacout}
 N 230 -570 230 -540 {
-lab=#net2}
+lab=dacout}
 N 220 -540 230 -540 {
-lab=#net2}
+lab=dacout}
 N 220 -540 220 -500 {
-lab=#net2}
+lab=dacout}
 N 220 -660 220 -600 {
-lab=#net3}
+lab=#net2}
 N 340 -570 350 -570 {
-lab=#net2}
+lab=dacout}
 N 350 -570 350 -540 {
-lab=#net2}
+lab=dacout}
 N 340 -540 350 -540 {
-lab=#net2}
+lab=dacout}
 N 340 -660 340 -600 {
-lab=#net4}
+lab=#net3}
 N 340 -540 340 -520 {
-lab=#net2}
+lab=dacout}
 N 220 -520 340 -520 {
-lab=#net2}
+lab=dacout}
 N 460 -570 470 -570 {
-lab=#net2}
+lab=dacout}
 N 470 -570 470 -540 {
-lab=#net2}
+lab=dacout}
 N 460 -540 470 -540 {
-lab=#net2}
+lab=dacout}
 N 460 -660 460 -600 {
-lab=#net5}
+lab=#net4}
 N 460 -540 460 -520 {
-lab=#net2}
+lab=dacout}
 N 340 -520 460 -520 {
-lab=#net2}
+lab=dacout}
 N 580 -570 590 -570 {
-lab=#net2}
+lab=dacout}
 N 590 -570 590 -540 {
-lab=#net2}
+lab=dacout}
 N 580 -540 590 -540 {
-lab=#net2}
+lab=dacout}
 N 580 -660 580 -600 {
-lab=#net6}
+lab=#net5}
 N 580 -540 580 -520 {
-lab=#net2}
+lab=dacout}
 N 460 -520 580 -520 {
-lab=#net2}
+lab=dacout}
 N 700 -570 710 -570 {
-lab=#net2}
+lab=dacout}
 N 710 -570 710 -540 {
-lab=#net2}
+lab=dacout}
 N 700 -540 710 -540 {
-lab=#net2}
+lab=dacout}
 N 700 -660 700 -600 {
-lab=#net7}
+lab=#net6}
 N 700 -540 700 -520 {
-lab=#net2}
+lab=dacout}
 N 580 -520 700 -520 {
-lab=#net2}
+lab=dacout}
 N 820 -570 830 -570 {
-lab=#net2}
+lab=dacout}
 N 830 -570 830 -540 {
-lab=#net2}
+lab=dacout}
 N 820 -540 830 -540 {
-lab=#net2}
+lab=dacout}
 N 820 -660 820 -600 {
-lab=#net8}
+lab=#net7}
 N 820 -540 820 -520 {
-lab=#net2}
+lab=dacout}
 N 700 -520 820 -520 {
-lab=#net2}
+lab=dacout}
 N 940 -570 950 -570 {
-lab=#net2}
+lab=dacout}
 N 950 -570 950 -540 {
-lab=#net2}
+lab=dacout}
 N 940 -540 950 -540 {
-lab=#net2}
+lab=dacout}
 N 940 -660 940 -600 {
-lab=#net9}
+lab=#net8}
 N 940 -540 940 -520 {
-lab=#net2}
+lab=dacout}
 N 820 -520 940 -520 {
-lab=#net2}
+lab=dacout}
 N 1060 -570 1070 -570 {
-lab=#net2}
+lab=dacout}
 N 1070 -570 1070 -540 {
-lab=#net2}
+lab=dacout}
 N 1060 -540 1070 -540 {
-lab=#net2}
+lab=dacout}
 N 1060 -660 1060 -600 {
-lab=#net10}
+lab=#net9}
 N 1060 -540 1060 -520 {
-lab=#net2}
+lab=dacout}
 N 940 -520 1060 -520 {
-lab=#net2}
+lab=dacout}
+N 940 -520 940 -440 {
+lab=dacout}
+N 940 -440 980 -440 {
+lab=dacout}
+N 220 -470 230 -470 {
+lab=GND}
+N 230 -470 230 -440 {
+lab=GND}
+N 220 -440 230 -440 {
+lab=GND}
 C {devices/vsource.sym} 80 -360 0 0 {name=Vvcc value=1.8 savecurrent=false}
 C {devices/lab_pin.sym} 80 -390 0 0 {name=p1 sig_type=std_logic lab=vcc}
 C {devices/gnd.sym} 80 -330 0 0 {name=l2 lab=GND}
@@ -277,12 +288,21 @@ C {devices/simulator_commands.sym} 30 -900 2 1 {name=COMMANDS2
 simulator=ngspice
 only_toplevel=false 
 value="
+.param MprogW=1
 .options savecurrents
 .control
 
+*  set temp=90
   save all
   tran 1n 12.8u
-  write 05.raw i(Vs1)
+  write 05.raw v(dacout)
+
+  set appendwrite
+  alterparam MprogW=0.9
+  reset
+*  *set temp=10
+  tran 1n 12.8u
+  write 05.raw v(dacout)
 
 .endc
 "}
@@ -296,7 +316,7 @@ tclcommand="xschem raw_read $netlist_dir/05.raw tran"
 }
 C {sky130_fd_pr/nfet_01v8.sym} 60 -570 0 0 {name=Mprog
 L=0.5
-W=1
+W=\{MprogW\}
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -310,7 +330,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 100 -690 0 1 {name=Mmirror
 L=0.15
-W=11.5
+W=14
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -338,7 +358,6 @@ sa=0 sb=0 sd=0
 model=pfet_01v8
 spiceprefix=X
 }
-C {devices/vsource.sym} 220 -470 0 0 {name=Vs1 value=0 savecurrent=false}
 C {devices/gnd.sym} 220 -440 0 0 {name=l4 lab=GND}
 C {devices/lab_pin.sym} 40 -570 0 0 {name=p3 sig_type=std_logic lab=G}
 C {sky130_fd_pr/pfet_01v8.sym} 320 -690 0 0 {name=M2
@@ -587,3 +606,22 @@ C {devices/vsource.sym} 680 -220 0 0 {name=V10 value="pulse 1.8v 0v 0n 1n 1n 255
 C {devices/gnd.sym} 680 -190 0 0 {name=l39 lab=GND}
 C {devices/vsource.sym} 680 -120 0 0 {name=V11 value="pulse 1.8v 0v 0n 1n 1n 5119n 10240n"  savecurrent=false}
 C {devices/gnd.sym} 680 -90 0 0 {name=l8 lab=GND}
+C {devices/lab_pin.sym} 980 -440 0 1 {name=p21 sig_type=std_logic lab=dacout}
+C {sky130_fd_pr/nfet_01v8.sym} 200 -470 0 0 {name=MS9
+L=0.2
+W=1
+nf=1 
+mult=1
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=nfet_01v8
+spiceprefix=X
+}
+C {devices/vsource.sym} 160 -250 0 0 {name=Vg1 value=1.8 savecurrent=false}
+C {devices/lab_pin.sym} 160 -280 0 0 {name=p22 sig_type=std_logic lab=P}
+C {devices/gnd.sym} 160 -220 0 0 {name=l5 lab=GND}
+C {devices/lab_pin.sym} 180 -470 0 0 {name=p23 sig_type=std_logic lab=P}
