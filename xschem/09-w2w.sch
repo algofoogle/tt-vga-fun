@@ -5,6 +5,27 @@ K {}
 V {}
 S {}
 E {}
+B 2 660 -1200 2090 -600 {flags=graph
+y1=0.00037
+y2=0.55
+ypos1=0
+ypos2=2
+divy=5
+subdivy=1
+unity=1
+x1=8.0318022e-08
+x2=1.0951954e-05
+divx=5
+subdivx=1
+xlabmag=1.0
+ylabmag=1.0
+node=vout
+color=4
+dataset=-1
+unitx=1
+logx=0
+logy=0
+rainbow=1}
 T {NOTE: These are DUTY CYCLES (pixel durations), not periods.} 2150 -150 0 0 0.4 0.4 {}
 N 220 -720 220 -640 {
 lab=vcc}
@@ -53,101 +74,101 @@ lab=Vbias}
 N 560 -490 630 -490 {
 lab=Vbias}
 N 670 -460 670 -300 {
-lab=#net2}
+lab=Vout}
 N 630 -490 630 -440 {
 lab=Vbias}
 N 630 -440 760 -440 {
 lab=Vbias}
 N 670 -400 730 -400 {
-lab=#net2}
+lab=Vout}
 N 800 -490 800 -440 {
 lab=Vbias}
 N 800 -440 930 -440 {
 lab=Vbias}
 N 840 -400 900 -400 {
-lab=#net3}
+lab=#net2}
 N 790 -400 840 -400 {
-lab=#net3}
+lab=#net2}
 N 760 -440 800 -440 {
 lab=Vbias}
 N 840 -460 840 -400 {
-lab=#net3}
+lab=#net2}
 N 970 -490 970 -440 {
 lab=Vbias}
 N 970 -440 1100 -440 {
 lab=Vbias}
 N 1010 -400 1070 -400 {
-lab=#net4}
+lab=#net3}
 N 1140 -490 1140 -440 {
 lab=Vbias}
 N 1140 -440 1270 -440 {
 lab=Vbias}
 N 1180 -400 1240 -400 {
-lab=#net5}
+lab=#net4}
 N 1130 -400 1180 -400 {
-lab=#net5}
+lab=#net4}
 N 1100 -440 1140 -440 {
 lab=Vbias}
 N 1180 -460 1180 -400 {
-lab=#net5}
+lab=#net4}
 N 930 -440 970 -440 {
 lab=Vbias}
 N 960 -400 1010 -400 {
-lab=#net4}
+lab=#net3}
 N 1310 -490 1310 -440 {
 lab=Vbias}
 N 1310 -440 1440 -440 {
 lab=Vbias}
 N 1350 -400 1410 -400 {
-lab=#net6}
+lab=#net5}
 N 1480 -490 1480 -440 {
 lab=Vbias}
 N 1480 -440 1610 -440 {
 lab=Vbias}
 N 1520 -400 1580 -400 {
-lab=#net7}
+lab=#net6}
 N 1470 -400 1520 -400 {
-lab=#net7}
+lab=#net6}
 N 1440 -440 1480 -440 {
 lab=Vbias}
 N 1520 -460 1520 -400 {
-lab=#net7}
+lab=#net6}
 N 1650 -490 1650 -440 {
 lab=Vbias}
 N 1650 -440 1780 -440 {
 lab=Vbias}
 N 1690 -400 1750 -400 {
-lab=#net8}
+lab=#net7}
 N 1820 -490 1820 -440 {
 lab=Vbias}
 N 1810 -400 1860 -400 {
-lab=#net9}
+lab=#net8}
 N 1780 -440 1820 -440 {
 lab=Vbias}
 N 1860 -460 1860 -400 {
-lab=#net9}
+lab=#net8}
 N 1610 -440 1650 -440 {
 lab=Vbias}
 N 1640 -400 1690 -400 {
-lab=#net8}
+lab=#net7}
 N 1300 -400 1350 -400 {
-lab=#net6}
+lab=#net5}
 N 1270 -440 1310 -440 {
 lab=Vbias}
 N 1010 -460 1010 -400 {
-lab=#net4}
+lab=#net3}
 N 1350 -460 1350 -400 {
-lab=#net6}
+lab=#net5}
 N 1690 -460 1690 -400 {
-lab=#net8}
+lab=#net7}
 N 2030 -460 2030 -400 {
-lab=#net9}
+lab=#net8}
 N 1820 -440 1990 -440 {
 lab=Vbias}
 N 1990 -490 1990 -440 {
 lab=Vbias}
 N 1860 -400 2030 -400 {
-lab=#net9}
+lab=#net8}
 N 800 -230 800 -190 {
 lab=Vout}
 N 800 -130 800 -70 {
@@ -158,15 +179,13 @@ N 810 -160 810 -130 {
 lab=GND}
 N 800 -130 810 -130 {
 lab=GND}
-N 670 -230 800 -230 {
-lab=Vout}
-N 730 -160 760 -160 {
-lab=Vout}
-N 730 -230 730 -160 {
-lab=Vout}
 N 800 -230 860 -230 {
 lab=Vout}
-N 670 -240 670 -230 {
+N 670 -300 670 -230 {
+lab=Vout}
+N 670 -230 730 -230 {
+lab=Vout}
+N 730 -230 800 -230 {
 lab=Vout}
 C {devices/vsource.sym} 70 -350 0 0 {name=Vvcc value=1.8 savecurrent=false}
 C {devices/lab_pin.sym} 70 -380 0 0 {name=p1 sig_type=std_logic lab=vcc}
@@ -175,15 +194,73 @@ C {devices/simulator_commands.sym} 140 -60 2 1 {name=COMMANDS2
 simulator=ngspice
 only_toplevel=false 
 value="
+.param MPW=6
+.param MMW=4
 .options savecurrents
 .control
 
   save all
+  *reset
+  *alterparam MPW=6
+  *alterparam MMW=4
   tran 1n 12.8u
-  *write 09.raw v(Vb) i(va1) i(va2) i(va3) i(va4) i(va5)
-  *plot i(va1) i(va2) i(va3) i(va4) i(va5)
+  write 09.raw Vout
+
   plot vout
-  plot i(va)
+
+  set appendwrite
+  alterparam MPW=5
+  alterparam MMW=4
+  reset
+  tran 1n 12.8u
+  write 09.raw Vout
+
+  set appendwrite
+  alterparam MPW=4
+  alterparam MMW=4
+  reset
+  tran 1n 12.8u
+  write 09.raw Vout
+
+  alterparam MPW=6
+  alterparam MMW=3
+  reset
+  tran 1n 12.8u
+  write 09.raw Vout
+
+  set appendwrite
+  alterparam MPW=5
+  alterparam MMW=3
+  reset
+  tran 1n 12.8u
+  write 09.raw Vout
+
+  set appendwrite
+  alterparam MPW=4
+  alterparam MMW=3
+  reset
+  tran 1n 12.8u
+  write 09.raw Vout
+
+  alterparam MPW=6
+  alterparam MMW=2
+  reset
+  tran 1n 12.8u
+  write 09.raw Vout
+
+  set appendwrite
+  alterparam MPW=5
+  alterparam MMW=2
+  reset
+  tran 1n 12.8u
+  write 09.raw Vout
+
+  set appendwrite
+  alterparam MPW=4
+  alterparam MMW=2
+  reset
+  tran 1n 12.8u
+  write 09.raw Vout
 
 .endc
 "}
@@ -227,7 +304,7 @@ C {devices/gnd.sym} 220 -400 0 0 {name=l1 lab=GND}
 C {devices/lab_pin.sym} 180 -490 0 0 {name=p3 sig_type=std_logic lab=G}
 C {sky130_fd_pr/pfet_01v8.sym} 470 -610 0 0 {name=Mprog2
 L=0.15
-W=5
+W=\{MPW\}
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -242,8 +319,8 @@ spiceprefix=X
 C {devices/lab_pin.sym} 490 -720 0 0 {name=p5 sig_type=std_logic lab=vcc}
 C {devices/gnd.sym} 450 -610 0 1 {name=l5 lab=GND}
 C {sky130_fd_pr/nfet_01v8.sym} 510 -490 0 1 {name=Mmirror2
-L=0.15
-W=3
+L=0.5
+W=\{MMW\}
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -259,7 +336,7 @@ C {devices/gnd.sym} 490 -300 0 0 {name=l6 lab=GND}
 C {devices/lab_pin.sym} 560 -490 3 0 {name=p6 sig_type=std_logic lab=Vbias}
 C {sky130_fd_pr/nfet_01v8.sym} 650 -490 0 0 {name=MB7
 L=0.15
-W=1
+W=2
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -273,7 +350,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8.sym} 760 -420 1 0 {name=M2B7
 L=0.15
-W=2
+W=4
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -287,7 +364,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8.sym} 1670 -490 0 0 {name=MB1
 L=0.15
-W=1
+W=2
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -301,7 +378,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8.sym} 930 -420 1 0 {name=M1
 L=0.15
-W=2
+W=4
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -315,7 +392,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8.sym} 1500 -490 0 0 {name=MB2
 L=0.15
-W=1
+W=2
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -329,7 +406,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8.sym} 1100 -420 1 0 {name=M2
 L=0.15
-W=2
+W=4
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -343,7 +420,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8.sym} 1330 -490 0 0 {name=MB3
 L=0.15
-W=1
+W=2
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -357,7 +434,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8.sym} 1270 -420 1 0 {name=M3
 L=0.15
-W=2
+W=4
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -371,7 +448,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8.sym} 1160 -490 0 0 {name=MB4
 L=0.15
-W=1
+W=2
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -385,7 +462,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8.sym} 1440 -420 1 0 {name=M4
 L=0.15
-W=2
+W=4
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -399,7 +476,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8.sym} 990 -490 0 0 {name=MB5
 L=0.15
-W=1
+W=2
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -413,7 +490,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8.sym} 1610 -420 1 0 {name=M5
 L=0.15
-W=2
+W=4
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -427,7 +504,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8.sym} 820 -490 0 0 {name=MB6
 L=0.15
-W=1
+W=2
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -441,7 +518,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8.sym} 1780 -420 1 0 {name=M6
 L=0.15
-W=2
+W=4
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -455,7 +532,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8.sym} 1840 -490 0 0 {name=MB0
 L=0.15
-W=1
+W=2
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -469,7 +546,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8.sym} 2010 -490 0 0 {name=MBend
 L=0.15
-W=1
+W=2
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -481,7 +558,6 @@ sa=0 sb=0 sd=0
 model=nfet_01v8
 spiceprefix=X
 }
-C {devices/ammeter.sym} 670 -270 0 0 {name=Va savecurrent=true}
 C {devices/gnd.sym} 760 -400 0 0 {name=l8 lab=GND}
 C {devices/gnd.sym} 670 -490 3 0 {name=l9 lab=GND}
 C {devices/gnd.sym} 930 -400 0 0 {name=l10 lab=GND}
@@ -550,5 +626,8 @@ sa=0 sb=0 sd=0
 model=nfet_01v8
 spiceprefix=X
 }
-C {devices/lab_pin.sym} 450 -60 0 0 {name=p26 sig_type=std_logic lab=G}
 C {devices/gnd.sym} 800 -70 0 0 {name=l27 lab=GND}
+C {devices/launcher.sym} 480 -1020 0 0 {name=h5
+descr="load waves" 
+tclcommand="xschem raw_read $netlist_dir/09.raw tran"
+}
