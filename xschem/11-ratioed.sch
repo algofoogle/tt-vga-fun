@@ -6,7 +6,7 @@ V {}
 S {}
 E {}
 B 2 1740 -1020 3240 -130 {flags=graph
-y1=0.8
+y1=0.32
 y2=1.9
 ypos1=0
 ypos2=2
@@ -22,7 +22,7 @@ ylabmag=1.0
 node="vpos
 vneg
 vbias
-\\"load;i(vvss) 100 * 0 * 0.8 +\\""
+\\"load (mA);i(vvss) 1000 *\\""
 color="18 6 4 12"
 dataset=-1
 unitx=1
@@ -203,6 +203,15 @@ C {devices/simulator_commands.sym} 130 -60 2 1 {name=COMMANDS2
 simulator=ngspice
 only_toplevel=false 
 value="
+* MPW:MMW=2.2:4.1 gets a linear range of 1V1..1V8 (0.7Vpp) with 2k5 pullups, uses ~600uA
+* 4:4 is what I was using for original measurements: 0V736..1V8 (1.064Vpp); uses ~900uA
+* 2:2 @ 2500R gets 0v733..1V8 (1.067Vpp) @ 650uA
+* 0.5:0.5 @ 2500R gets 0v708..1v8 (1.092Vpp) @ ~500uA (Vbias around 1.373)
+.param MPW=0.5
+.param MMW=0.5
+
+.param singlebits=0
+.IF (singlebits == 1)
 Vxp0 p0 GND pulse 0v 1.8v 1u 1n 1n 1u 10u
 Vxp1 p1 GND pulse 0v 1.8v 2u 1n 1n 1u 10u
 Vxp2 p2 GND pulse 0v 1.8v 3u 1n 1n 1u 10u
@@ -219,9 +228,25 @@ Vxn4 n4 GND pulse 1.8v 0v 5u 1n 1n 1u 10u
 Vxn5 n5 GND pulse 1.8v 0v 6u 1n 1n 1u 10u
 Vxn6 n6 GND pulse 1.8v 0v 7u 1n 1n 1u 10u
 Vxn7 n7 GND pulse 1.8v 0v 8u 1n 1n 1u 10u
+.ELSEIF (singlebits == 0)
+Vxp0 p0 GND pulse 1.8v 0v 0n 1n 1n 39n 80n
+Vxp1 p1 GND pulse 1.8v 0v 0n 1n 1n 79n 160n
+Vxp2 p2 GND pulse 1.8v 0v 0n 1n 1n 159n 320n
+Vxp3 p3 GND pulse 1.8v 0v 0n 1n 1n 319n 640n
+Vxp4 p4 GND pulse 1.8v 0v 0n 1n 1n 639n 1280n
+Vxp5 p5 GND pulse 1.8v 0v 0n 1n 1n 1279n 2560n
+Vxp6 p6 GND pulse 1.8v 0v 0n 1n 1n 2559n 5120n
+Vxp7 p7 GND pulse 1.8v 0v 0n 1n 1n 5119n 10240n
+Vxn0 n0 GND pulse 0v 1.8v 0n 1n 1n 39n 80n
+Vxn1 n1 GND pulse 0v 1.8v 0n 1n 1n 79n 160n
+Vxn2 n2 GND pulse 0v 1.8v 0n 1n 1n 159n 320n
+Vxn3 n3 GND pulse 0v 1.8v 0n 1n 1n 319n 640n
+Vxn4 n4 GND pulse 0v 1.8v 0n 1n 1n 639n 1280n
+Vxn5 n5 GND pulse 0v 1.8v 0n 1n 1n 1279n 2560n
+Vxn6 n6 GND pulse 0v 1.8v 0n 1n 1n 2559n 5120n
+Vxn7 n7 GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
+.ENDIF
 
-.param MPW=4
-.param MMW=4
 .options savecurrents
 .control
 
@@ -419,7 +444,7 @@ spiceprefix=X
 C {devices/lab_pin.sym} 620 -670 3 0 {name=p9 sig_type=std_logic lab=p2}
 C {devices/lab_pin.sym} 680 -670 3 0 {name=p10 sig_type=std_logic lab=n2}
 C {sky130_fd_pr/nfet3_01v8.sym} 840 -570 3 0 {name=MB3
-L=2
+L=2.1
 W=0.5
 body=GND
 nf=1
@@ -513,8 +538,8 @@ spiceprefix=X
 C {devices/lab_pin.sym} 940 -670 3 0 {name=p13 sig_type=std_logic lab=p4}
 C {devices/lab_pin.sym} 1000 -670 3 0 {name=p14 sig_type=std_logic lab=n4}
 C {sky130_fd_pr/nfet3_01v8.sym} 1160 -570 3 0 {name=MB5
-L=0.5
-W=0.5
+L=1.1
+W=1.05
 body=GND
 nf=1
 mult=1
@@ -561,7 +586,7 @@ C {devices/lab_pin.sym} 1100 -670 3 0 {name=p15 sig_type=std_logic lab=p5}
 C {devices/lab_pin.sym} 1160 -670 3 0 {name=p16 sig_type=std_logic lab=n5}
 C {sky130_fd_pr/nfet3_01v8.sym} 1320 -570 3 0 {name=MB6
 L=0.5
-W=1
+W=1.1
 body=GND
 nf=1
 mult=1
@@ -608,7 +633,7 @@ C {devices/lab_pin.sym} 1260 -670 3 0 {name=p17 sig_type=std_logic lab=p6}
 C {devices/lab_pin.sym} 1320 -670 3 0 {name=p18 sig_type=std_logic lab=n6}
 C {sky130_fd_pr/nfet3_01v8.sym} 1480 -570 3 0 {name=MB7
 L=0.5
-W=2
+W=2.1
 body=GND
 nf=1
 mult=1
@@ -704,12 +729,12 @@ C {devices/gnd.sym} 1270 -190 0 0 {name=l22 lab=GND}
 C {devices/vsource.sym} 1270 -120 0 0 {name=Vn7 value="pulse 0v 1.8v 0n 1n 1n 5119n 10240n"  savecurrent=false}
 C {devices/gnd.sym} 1270 -90 0 0 {name=l23 lab=GND}
 C {devices/res.sym} 1510 -930 0 0 {name=Rp
-value=2000
+value=2500
 footprint=1206
 device=resistor
 m=1}
 C {devices/res.sym} 1580 -930 0 0 {name=Rn
-value=2000
+value=2500
 footprint=1206
 device=resistor
 m=1}
@@ -778,3 +803,5 @@ C {devices/lab_pin.sym} 390 -910 0 0 {name=p65 sig_type=std_logic lab=vss}
 C {devices/lab_pin.sym} 450 -910 0 1 {name=p66 sig_type=std_logic lab=vcc}
 C {devices/lab_pin.sym} 230 -910 0 0 {name=p67 sig_type=std_logic lab=vss}
 C {devices/lab_pin.sym} 290 -910 0 1 {name=p68 sig_type=std_logic lab=vcc}
+C {devices/parax_cap.sym} 1580 -820 0 0 {name=C1 gnd=0 value=3p m=1}
+C {devices/parax_cap.sym} 1510 -860 0 0 {name=C2 gnd=0 value=3p m=1}
