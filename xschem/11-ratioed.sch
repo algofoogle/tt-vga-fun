@@ -6,7 +6,7 @@ V {}
 S {}
 E {}
 B 2 1740 -1020 3240 -130 {flags=graph
-y1=0.32
+y1=0.22
 y2=1.9
 ypos1=0
 ypos2=2
@@ -30,6 +30,26 @@ logx=0
 logy=0
 rainbow=1}
 T {NOTE: These are DUTY CYCLES (pixel durations), not periods.} 340 -60 0 0 0.4 0.4 {}
+T {Area:
+Mprog2: 0.5 x 0.15
+Mmirror2: 0.5 x 0.5
+Switches 0..4: 0.5 x 0.15 (x2)
+5: 1 x 0.15 (x2)
+6: 2 x 0.15 (x2)
+7: 3 x 0.15 (x2)
+Steering:
+0.5 x 16
+0.5 x 8
+0.5 x 4
+0.5 x 2.1
+0.5 x 1
+1.9 x 2.3
+1.1 x 0.5
+2.1 x 0.5
+Resistors: Both ~6um wide?
+Total area, not inc. buffers: ~100squm?
+Widest FET (if not MF) is ~17um: assume 17x17um (289squm)
+} 1570 -360 0 0 0.4 0.4 {}
 N 120 -750 120 -670 {
 lab=vcc}
 N 120 -670 120 -640 {
@@ -538,8 +558,8 @@ spiceprefix=X
 C {devices/lab_pin.sym} 940 -670 3 0 {name=p13 sig_type=std_logic lab=p4}
 C {devices/lab_pin.sym} 1000 -670 3 0 {name=p14 sig_type=std_logic lab=n4}
 C {sky130_fd_pr/nfet3_01v8.sym} 1160 -570 3 0 {name=MB5
-L=1.1
-W=1.05
+L=2.3
+W=1.9
 body=GND
 nf=1
 mult=1
